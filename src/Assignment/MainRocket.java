@@ -19,7 +19,7 @@ public class MainRocket {
         System.out.println("Average weight = " +rocket.getAverageWeight());
         System.out.println("Maximum weight = " +rocket.getMaxWeight());
         System.out.println("Minimum weight = " +rocket.getMinWeight());
-        rocket.printCountDown(rocket.countdownInput());  // countdown
+        //rocket.printCountDown(rocket.countdownInput());  // countdown
 
     }
 }
