@@ -17,7 +17,7 @@ public class Astronaut{
 
     @Override
     public String toString() {
-        return 
+        return rank + " (" + nationality + ", " + age +")";
     }
 
     public String getNationality() {
