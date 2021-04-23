@@ -9,5 +9,5 @@ public class Crew {
     private String[] nationalities;
     private List<Astronaut> crew = new ArrayList<>();
 
-    RANKS[crew.get(0).getRank()];
+    //RANKS[crew.get(0).getRank()];
 }

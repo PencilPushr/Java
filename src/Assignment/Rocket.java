@@ -2,6 +2,7 @@ package Assignment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Rocket {
@@ -15,15 +16,19 @@ public class Rocket {
 
 
     // Collects the integer for input to be used in printCountdown provided the input is bigger than 1
-    // TODO: See if its possible to re-enter the loop if a letter/string/char is entered.
     public int countdownInput(){
         int cdNumber = -1;
-        while(!(cdNumber>1) || cdNumber != (int)cdNumber){ //todo partially completed: check if a number smaller than 1 is entered (DONE)
-            System.out.println("Please input a time bigger than one: ");
-            Scanner s = new Scanner(System.in);
-            cdNumber = s.nextInt();
-            if (!(cdNumber>1)){
-                System.out.println("Invalid Time!");
+        while(!(cdNumber>1)){
+            try {
+                System.out.println("Please input a time bigger than one: ");
+                Scanner s = new Scanner(System.in);
+                cdNumber = s.nextInt();
+                if (!(cdNumber > 1)) {
+                    System.out.println("Invalid Time!");
+                }
+            }
+            catch (InputMismatchException e){
+                System.err.println("Not a valid input" + e.getMessage());
             }
         }
 
