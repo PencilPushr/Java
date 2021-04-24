@@ -41,8 +41,7 @@ public class Rocket {
         for (int i = countDown; i >= 1; i--) {
             System.out.println(i);
         }
-        System.out.println("Lift Off!");    // we are only counting down to 1, because in order for the for loop to finish it must be equal to 1
-                                                // therefore the next value would be 0, and we would have lift off and we have no need to print 0.
+        System.out.println("Lift Off!");    // we are only counting down to 1, as next value would be zero in which case we would have lift off.
     }
 
     // returns sum of the payload array index and assigns it to payload sum which we return
