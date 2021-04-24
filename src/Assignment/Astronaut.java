@@ -1,6 +1,6 @@
 package Assignment;
 
-abstract class Astronaut{
+abstract class Astronaut implements Comparable<Astronaut>{
 
     private String nationality;
     private String rank;
@@ -15,11 +15,20 @@ abstract class Astronaut{
         this.age = age;
     }
 
+    //Overriden methods below vvv
+
     @Override
     public String toString() {
 
-        return rank + " (" + nationality + ", " + age +")";
+        return this.rank + " (" + this.nationality + ", " + this.age +")";
     }
+
+    @Override
+    public int compareTo(Astronaut astronaut) {
+        return 0;
+    }
+
+
 
     public String getNationality() {
 
