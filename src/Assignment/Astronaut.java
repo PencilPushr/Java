@@ -1,6 +1,6 @@
 package Assignment;
 
-public class Astronaut{
+abstract class Astronaut{
 
     private String nationality;
     private String rank;
@@ -17,22 +17,27 @@ public class Astronaut{
 
     @Override
     public String toString() {
+
         return rank + " (" + nationality + ", " + age +")";
     }
 
     public String getNationality() {
+
         return nationality;
     }
 
     public String getRank() {
+
         return rank;
     }
 
     public int getRankNum() {
+
         return rankNum;
     }
 
     public int getAge() {
+
         return age;
     }
 }

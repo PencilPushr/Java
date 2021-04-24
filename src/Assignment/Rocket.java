@@ -28,7 +28,7 @@ public class Rocket {
                 }
             }
             catch (InputMismatchException e){
-                System.err.println("Not a valid input" + e.getMessage());
+                System.err.println("Not a valid input | error: " + e.getMessage());
             }
         }
 
