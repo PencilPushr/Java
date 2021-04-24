@@ -12,7 +12,7 @@ public class Crew extends Astronaut{
     public Crew(String nationality, String rank, int rankNum, int age) {
         super(nationality, rank, rankNum, age);
 
+        String currentRank = RANKS[crew.get(0).getRankNum()];
     }
 
-    //RANKS[crew.get(0).getRank()];
 }

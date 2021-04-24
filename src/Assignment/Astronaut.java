@@ -1,5 +1,7 @@
 package Assignment;
 
+import java.util.Objects;
+
 abstract class Astronaut implements Comparable<Astronaut>{
 
     private String nationality;
@@ -13,6 +15,7 @@ abstract class Astronaut implements Comparable<Astronaut>{
         this.rank = rank;
         this.rankNum = rankNum;
         this.age = age;
+
     }
 
     //Overriden methods below vvv
@@ -25,10 +28,21 @@ abstract class Astronaut implements Comparable<Astronaut>{
 
     @Override
     public int compareTo(Astronaut astronaut) {
-        return 0;
+        return rankNum + nationality + age;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Astronaut astronaut = (Astronaut) o;
+        return rankNum == astronaut.rankNum && age == astronaut.age && Objects.equals(nationality, astronaut.nationality) && Objects.equals(rank, astronaut.rank);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(nationality, rank, rankNum, age);
+    }
 
     public String getNationality() {
 
