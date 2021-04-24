@@ -9,9 +9,5 @@ public class Crew extends Astronaut{
     private String[] nationalities;
     private List<Astronaut> crew = new ArrayList<>();
 
-    public Crew(String nationality, String rank, int rankNum, int age) {
-        super(nationality, rank, rankNum, age);
-    }
-
     //RANKS[crew.get(0).getRank()];
 }
