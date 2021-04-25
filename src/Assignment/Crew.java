@@ -16,19 +16,23 @@ public class Crew extends Astronaut{
         super(nationality, rank, rankNum, age);
 
         String currentRank = RANKS[crew.get(0).getRankNum()];
+
+        getNationalityArray();
     }
 
-    public static List<String> nationalityArr() {
+
+    public List<String> getNationalityArray() {
         List<String> arr = new ArrayList<>();
         try {
-            File f = new File("Assignment/nationalities.txt");
+            File f = new File("/home/averagejoe/IdeaProjects/Java/src/Assignment/nationalities.txt");
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
-
+            arr.add(s.nextLine());
             }
+            s.close();
         }
         catch (FileNotFoundException e){
-            System.out.printf("File not found | " + e.getMessage());
+            System.out.println("File not found | " + e.getMessage());
         }
         return arr;
     }

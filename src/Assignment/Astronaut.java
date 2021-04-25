@@ -28,6 +28,16 @@ abstract class Astronaut implements Comparable<Astronaut>{
 
     @Override
     public int compareTo(Astronaut astronaut) {
+        int result = this.rankNum - astronaut.rankNum;
+        if (result == 0) {
+            result = this.nationality.compareTo(astronaut.nationality);
+            if (result == 0){
+                result = this.age - astronaut.age;
+            }
+        }
+        return result;
+
+        /* Retard code -- it was the only way I could see it returning in an ascending order.
         if (astronaut.rankNum == rankNum){
             if (astronaut.nationality == nationality){
                 if (astronaut.age == age){
@@ -43,6 +53,8 @@ abstract class Astronaut implements Comparable<Astronaut>{
         }
 
         return -1;
+
+         */
     }
 
     @Override
