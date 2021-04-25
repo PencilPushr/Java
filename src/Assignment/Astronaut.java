@@ -28,7 +28,10 @@ abstract class Astronaut implements Comparable<Astronaut>{
 
     @Override
     public int compareTo(Astronaut astronaut) {
-        return rankNum + nationality + age;
+        if (n == ){
+            System.out.println(rankNum);
+        }
+        return rankNum + nationality + (String) age;
     }
 
     @Override
