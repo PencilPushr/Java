@@ -1,4 +1,4 @@
-package Assignment;
+package Excercises;
 
 public class MarsDisplay extends Plot{
 

@@ -1,4 +1,4 @@
-package Assignment;
+package Excercises;
 
 public class MarsData extends Plot{
 

@@ -1,4 +1,4 @@
-package Assignment;
+package Excercises;
 
 import java.util.Objects;
 
@@ -17,8 +17,6 @@ public class Astronaut implements Comparable<Astronaut>{
         this.age = age;
 
     }
-
-    //Overriden methods below vvv
 
     @Override
     public String toString() {
@@ -71,21 +69,21 @@ public class Astronaut implements Comparable<Astronaut>{
 
     public String getNationality() {
 
-        return nationality;
+        return this.nationality;
     }
 
     public String getRank() {
 
-        return rank;
+        return this.rank;
     }
 
     public int getRankNum() {
 
-        return rankNum;
+        return this.rankNum;
     }
 
     public int getAge() {
 
-        return age;
+        return this.age;
     }
 }
