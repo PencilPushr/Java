@@ -2,7 +2,7 @@ package Assignment;
 
 import java.util.Objects;
 
-abstract class Astronaut implements Comparable<Astronaut>{
+public class Astronaut implements Comparable<Astronaut>{
 
     private String nationality;
     private String rank;
@@ -22,7 +22,6 @@ abstract class Astronaut implements Comparable<Astronaut>{
 
     @Override
     public String toString() {
-
         return this.rank + " (" + this.nationality + ", " + this.age +")";
     }
 
