@@ -3,6 +3,7 @@ package Excercises;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,8 +11,8 @@ public class Crew extends Astronaut{
 
     // make these static for debug
     private static final String[] RANKS = { "Commander", "Pilot", "Payload Commander", "Mission specialist", "Spaceflight Participant"};
-    private static String[] nationalities;
-    private static List<Astronaut> crew = new ArrayList<>();
+    private String[] nationalities;
+    private List<Astronaut> crew = new ArrayList<>();
     public static String filepath = ("/home/alex/Java/src/Excercises/nationalities.txt");
     ///home/alex/Java/src/Assignment/
 
@@ -22,22 +23,22 @@ public class Crew extends Astronaut{
 
         this.nationalities = getNationalityArray(filepath);
 
-/*        for (int i = 0; i <= this.nationalities.length; i++){
+        for (int i = 0; i <= this.nationalities.length; i++){
             for (int j = 0; j < this.RANKS.length; j++) {
                 Astronaut astronaut = new Astronaut(nationalities[i], RANKS[j], j, randomAge());
                 crew.add(astronaut);
             }
-        }*/
+        }
 
     }
 
-// -- debug
+/* -- debug
     public static void main(String[] args) {
 
 /*        for (int i = 0; i < getNationalityArray(filepath).length; i++) {
             String[] tmp = getNationalityArray(filepath);
             System.out.println(tmp[i].toString());
-        }*/
+        }
 
 
         nationalities = getNationalityArray(filepath);
@@ -45,18 +46,16 @@ public class Crew extends Astronaut{
             for (int j = 0; j < RANKS.length; j++) {
                 Astronaut astronaut = new Astronaut(nationalities[i], RANKS[j], j, randomAge());
                 crew.add(astronaut);
-//                System.out.println(astronaut);
+                System.out.println(astronaut);
             }
         }
-
-        PrintCrew();
     }
 
-    //*/
+    */
 
     //make getNationality and randomAge static for debug
     //also not sure if it's even worth having a try catch block, if filepath is invalid in the first place
-    public static String[] getNationalityArray(String filepath) {
+    public String[] getNationalityArray(String filepath) {
         ArrayList<String> arr = new ArrayList<>();
         try {
             Scanner s = new Scanner(new File(filepath));
@@ -73,26 +72,24 @@ public class Crew extends Astronaut{
         return items;
     }
 
-    public static int randomAge() {
+    public int randomAge() {
         int age = 0;
         age= 28 + (int) (Math.random() * (55 - 28 + 1));
         return age;
     }
 
-    public static void PrintCrew(){
+    public void PrintCrew(){
         for (int i = 0; i < crew.size(); i++) {
             System.out.println(crew.get(i));
         }
     }
 
     public void sortCrew(){
-       // for (int i = 0; i < crew.size(); i++) {
-       //     System.out.println(crew.compareTo(crew));
-       // }
+        Collections.sort(crew);
     }
 
     public void shuffleCrew(){
-
+        Collections.shuffle(crew);
     }
 
 }

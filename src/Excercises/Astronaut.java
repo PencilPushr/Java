@@ -24,12 +24,12 @@ public class Astronaut implements Comparable<Astronaut>{
     }
 
     @Override
-    public int compareTo(Astronaut astronaut) {
-        int result = this.rankNum - astronaut.rankNum;
+    public int compareTo(Astronaut otherAstronaut) {
+        int result = this.rankNum - otherAstronaut.rankNum;
         if (result == 0) {
-            result = this.nationality.compareTo(astronaut.nationality);
+            result = this.nationality.compareTo(otherAstronaut.nationality);
             if (result == 0){
-                result = this.age - astronaut.age;
+                result = this.age - otherAstronaut.age;
             }
         }
         return result;
