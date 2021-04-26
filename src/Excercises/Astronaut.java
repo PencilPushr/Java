@@ -79,7 +79,7 @@ public class Astronaut implements Comparable<Astronaut>{
 
     public int getRankNum() {
 
-        return this.rankNum = ;
+        return this.rankNum;
     }
 
     public int getAge() {
