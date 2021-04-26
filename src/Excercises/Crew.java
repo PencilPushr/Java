@@ -11,7 +11,7 @@ public class Crew extends Astronaut{
     private static final String[] RANKS = { "Commander", "Pilot", "Payload Commander", "Mission specialist", "Spaceflight Participant"};
     private static  String[] nationalities;
     private static List<Astronaut> crew = new ArrayList<>();
-    public static String filepath = ("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises/nationalities.txt");
+    public static String filepath = ("/home/alex/Java/src/Excercises/nationalities.txt");
     ///home/alex/Java/src/Assignment/
 
     public Crew(String nationality, String rank, int rankNum, int age, String filepath) {
@@ -70,7 +70,7 @@ public class Crew extends Astronaut{
 
     public static int randomAge() {
         int age = 0;
-        age= (int) (Math.random() * (55 - 32 + 1));
+        age= 28 + (int) (Math.random() * (55 - 28 + 1));
         return age;
     }
 
