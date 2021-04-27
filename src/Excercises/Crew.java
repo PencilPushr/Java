@@ -2,10 +2,7 @@ package Excercises;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Crew extends Astronaut{
 
@@ -29,7 +26,7 @@ public class Crew extends Astronaut{
                 crew.add(astronaut);
             }
         }
-
+        //System.out.println(assembleMissionCrew());
     }
 
 /* -- debug
@@ -91,5 +88,16 @@ public class Crew extends Astronaut{
     public void shuffleCrew(){
         Collections.shuffle(crew);
     }
+
+   /* public Map<String, Astronaut> assembleMissionCrew(){
+        //Set<>
+        //        Random rng = new Random();
+        Set<String> = RANKS;
+        Map<String, Astronaut> missionCrew = new TreeMap<>();
+        missionCrew.put(RANKS, );
+    }*/
+
+//    public static Set<String> randomSelector(){
+//    }
 
 }
