@@ -20,7 +20,7 @@ public class Astronaut implements Comparable<Astronaut>{
 
     @Override
     public String toString() {
-        return this.rank + " (" + this.nationality + ", " + this.age +")";
+        return (this.rank + " (" + this.nationality + ", " + this.age +")");
     }
 
     @Override
@@ -33,25 +33,6 @@ public class Astronaut implements Comparable<Astronaut>{
             }
         }
         return result;
-
-        /* Retard code -- it was the only way I could see it returning in an ascending order.
-        if (astronaut.rankNum == rankNum){
-            if (astronaut.nationality == nationality){
-                if (astronaut.age == age){
-                    return 0;
-                } else if (astronaut.age < age){
-                    return 1;
-                }
-            } else if (astronaut.nationality != nationality){
-                return 1;
-            }
-        } else if (astronaut.rankNum < rankNum){
-            return 1;
-        }
-
-        return -1;
-
-         */
     }
 
     @Override
