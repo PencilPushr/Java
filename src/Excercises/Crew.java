@@ -27,27 +27,6 @@ public class Crew{
         //System.out.println(assembleMissionCrew());
     }
 
-/* -- debug
-    public static void main(String[] args) {
-
-/*        for (int i = 0; i < getNationalityArray(filepath).length; i++) {
-            String[] tmp = getNationalityArray(filepath);
-            System.out.println(tmp[i].toString());
-        }
-
-
-        nationalities = getNationalityArray(filepath);
-        for (int i = 0; i < nationalities.length; i++){
-            for (int j = 0; j < RANKS.length; j++) {
-                Astronaut astronaut = new Astronaut(nationalities[i], RANKS[j], j, randomAge());
-                crew.add(astronaut);
-                System.out.println(astronaut);
-            }
-        }
-    }
-
-    */
-
     //make getNationality and randomAge static for debug
     //also not sure if it's even worth having a try catch block, if filepath is invalid in the first place
     public String[] getNationalityArray(String filepath){
