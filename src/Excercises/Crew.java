@@ -10,7 +10,7 @@ public class Crew{
     private static final String[] RANKS = { "Commander", "Pilot", "Payload Commander", "Mission specialist", "Spaceflight Participant"};
     private String[] nationalities;
     private ArrayList<Astronaut> crew = new ArrayList<Astronaut>();
-    public static String filepath = ("/home/alex/Java/src/Excercises/nationalities.txt");
+    public String filepath;// = ("/home/alex/Java/src/Excercises/nationalities.txt"); this is an example of what it could be.
     ///home/alex/Java/src/Assignment/
 
     public Crew(String filepath) {
@@ -66,15 +66,35 @@ public class Crew{
         Collections.shuffle(crew);
     }
 
-    public Map<String, Astronaut> assembleMissionCrew(){
-        Set<String> rank = new HashSet<>(Arrays.asList(this.RANKS));
-        HashMap<String, Astronaut> missionCrew = new HashMap<String, Astronaut>();
-        for (int i = 0; i < this.RANKS.length; i++) {
-            missionCrew.put(this.RANKS[i], ); //Need to create a method of getting astronaut of certain rank (NameofRank,
+    public Astronaut getAstronautOfRank(String rank){
+        List valid = Arrays.asList(this.RANKS); //Create a list to validate the rank we are checking
+        if (valid.contains(rank)){ // if the list valid contains the inputted string shuffle (fair chance at selection)
+            Collections.shuffle(crew);
+            for (int i = 0; i < this.crew.size(); i++){ //iterating through the crew list of Astronauts
+                if (this.crew.get(i).getRank().equals(rank)){ // if the Astronaut of RANK x is equal to the String rank
+                    return this.crew.get(i); //return the Astronaut.
+                }
+            }
+            System.out.println("There is no Astronaut of this rank | Error"); //this has been called before there are astronauts in the list.
+            System.exit(0);
+        } else {
+            System.out.println("Attempted to retrieve Astronaut of an invalid rank | Error"); // Error: the string rank is out of bounds.
+            System.exit(0);
         }
+        //This shouldn't ever happen, be concerned if it does.
+        return null;
     }
 
-//    public static Set<String> randomSelector(){
-//    }
+    public Map<String, Astronaut> assembleMissionCrew(){
+        Set<String> rank = new HashSet<>(Arrays.asList(this.RANKS)); //Creating a set
+        HashMap<String, Astronaut> missionCrew = new HashMap<String, Astronaut>(); //
+        for (int i = 0; i < this.RANKS.length; i++) {
+            missionCrew.put(this.RANKS[i], this.getAstronautOfRank(this.RANKS[i]));
+        }
+        return missionCrew;
+    }
+
+
+
 
 }

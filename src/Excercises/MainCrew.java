@@ -6,22 +6,39 @@ import java.util.Scanner;
 
 public class MainCrew {
 
+    private Crew crew;
+
     public static void main(String[] args) {
         MainCrew mainCrew = new MainCrew();
         mainCrew.menu();
 
     }
 
-    public void menu(){
+    public String askFile(){
         boolean stop = false;
 
-        System.out.println("\nMenu Options\n");
-        System.out.println("(1) - print crew (sorted)");
-        System.out.println("(2) - print crew (shuffled)");
-        System.out.println("(3) - to assemble and print mission crew");
-        System.out.println("quit - quit");
+        while (!stop){
+            try {
+                Scanner s = new Scanner(System.in);
+                String input;
 
-        System.out.println("\nPlease enter selection: \n");
+                System.out.println("Input the name of the file to read nationalities");
+
+                input = s.next().toLowerCase();
+            }
+            catch {
+
+            }
+        }
+
+    }
+
+    public void menu(){
+        MainCrew mainCrew = new MainCrew();
+        String file = mainCrew.askFile();
+        this.crew = new Crew(file);
+
+        boolean stop = false;
 
         while (!stop) {
             try {
@@ -35,6 +52,10 @@ public class MainCrew {
 
                 System.out.println("Would you like to quit?");
                 input = s.next().toLowerCase();
+                //check if input is valid
+                //switch: check if 
+                //switch: have a default for case that is not recongised
+
                 if (input.equals("quit")) {
                     stop = true;
                 }
