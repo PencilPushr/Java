@@ -1,6 +1,8 @@
 package Excercises;
 
 import javax.naming.directory.InvalidSearchFilterException;
+import java.io.File;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -8,47 +10,23 @@ import java.util.Scanner;
 public class MainCrew {
 
     private Crew crew;
-
     public static void main(String[] args) {
         MainCrew mainCrew = new MainCrew();
         mainCrew.menu();
-
-    }
-
-    public String askFile(){
-        boolean stop = false;
-
-        while (!stop){
-            try {
-                Scanner s = new Scanner(System.in);
-                String input;
-
-                System.out.println("Input the name of the file to read nationalities");
-
-                input = s.next().toLowerCase();
-            }
-            catch (InvalidSearchFilterException e){
-                System.out.println("")
-            }
-            try {
-
-            } catch (){
-
-            }
-        }
-
     }
 
     public void menu(){
+
         MainCrew mainCrew = new MainCrew();
-        //String file = mainCrew.askFile();
-        //this.crew = new Crew(file);
+        System.out.println("enter the file path location including the file name containing the nationalities: ");
+        Scanner s = new Scanner(System.in);
+        String file = s.next();
+        this.crew = new Crew(file);
 
         boolean stop = false;
 
         while (!stop) {
             try {
-                Scanner s = new Scanner(System.in);
                 String input;
 
                 System.out.println(" 1 - print crew (sorted)");

@@ -10,13 +10,13 @@ import java.util.Scanner;
 public class MarsData {
 
     private double[][] arrayOfMars;
-    public static String filepath;
+    public static String filepath = ("/home/alex/Java/src/Excercises/marsPolarSmall.csv");
 
     public static void main(String[] args) {
-        CSVReader();
+        System.out.println(readDataN3());
     }
 
-    public static Double[][] CSVReader(){
+    public static Double[][] readDataN3(){
         /*ArrayList<String> arr = new ArrayList<>();
         String line = "";
         String splitBy = ",";
@@ -30,7 +30,13 @@ public class MarsData {
         catch (FileNotFoundException e){
             System.out.println("File not found | " + filepath);
             e.printStackTrace();
-        }*/
+        }
+        2d array of strings, line and coordinates
+
+        */
+
+
+
         ArrayList<String> arr = new ArrayList<>();
 
         String  lineSplit[] = new String[3];
@@ -41,9 +47,9 @@ public class MarsData {
 
             while (s.hasNextLine()) {
                 lineSplit[0] = line;
+                lineSplit[1] = line.split(",")[0];
                 lineSplit[1] = line.split(",")[1];
                 lineSplit[1] = line.split(",")[2];
-                lineSplit[1] = line.split(",")[3];
             }
 
             System.out.println(Arrays.toString(lineSplit));

@@ -18,7 +18,7 @@ public class Crew{
 
         this.nationalities = getNationalityArray(filepath);
 
-        for (int i = 0; i <= this.nationalities.length; i++){
+        for (int i = 0; i < this.nationalities.length; i++){
             for (int j = 0; j < this.RANKS.length; j++) {
                 Astronaut astronaut = new Astronaut(this.nationalities[i], this.RANKS[j], j, randomAge());
                 crew.add(astronaut);
