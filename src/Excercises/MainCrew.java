@@ -14,7 +14,7 @@ public class MainCrew {
 
     }
 
-    public String askFile(){
+/*    public String askFile(){
         boolean stop = false;
 
         while (!stop){
@@ -29,14 +29,19 @@ public class MainCrew {
             catch {
 
             }
+            try {
+
+            } catch (){
+
+            }
         }
 
-    }
+    }*/
 
     public void menu(){
         MainCrew mainCrew = new MainCrew();
-        String file = mainCrew.askFile();
-        this.crew = new Crew(file);
+        //String file = mainCrew.askFile();
+        //this.crew = new Crew(file);
 
         boolean stop = false;
 
@@ -50,14 +55,33 @@ public class MainCrew {
                 System.out.println(" 3 - to assemble and print mission crew");
                 System.out.println("quit - quit");
 
-                System.out.println("Would you like to quit?");
                 input = s.next().toLowerCase();
                 //check if input is valid
-                //switch: check if 
-                //switch: have a default for case that is not recongised
+                //switch: have a default for case that is not recognised
 
-                if (input.equals("quit")) {
-                    stop = true;
+                switch (input.toLowerCase()) {
+                    case "1":
+                        crew.sortCrew();
+                        crew.PrintCrew();
+                        break;
+
+                    case "2":
+                        crew.shuffleCrew();
+                        crew.PrintCrew();
+                        break;
+
+                    case "3" :
+                        crew.assembleMissionCrew();
+                        crew.PrintCrew();
+                        break;
+
+                    case "quit" :
+                        stop = true;
+                        break;
+
+                    default:
+                        System.out.println("Invalid menu options entered!");
+                        menu();
                 }
             }
             catch (InputMismatchException e){
