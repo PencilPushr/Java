@@ -1,5 +1,6 @@
 package Excercises;
 
+import javax.naming.directory.InvalidSearchFilterException;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ public class MainCrew {
 
     }
 
-/*    public String askFile(){
+    public String askFile(){
         boolean stop = false;
 
         while (!stop){
@@ -26,8 +27,8 @@ public class MainCrew {
 
                 input = s.next().toLowerCase();
             }
-            catch {
-
+            catch (InvalidSearchFilterException e){
+                System.out.println("")
             }
             try {
 
@@ -36,7 +37,7 @@ public class MainCrew {
             }
         }
 
-    }*/
+    }
 
     public void menu(){
         MainCrew mainCrew = new MainCrew();
@@ -85,7 +86,11 @@ public class MainCrew {
                 }
             }
             catch (InputMismatchException e){
-                System.out.println("Illegal input | " + e.getMessage());
+                System.out.println("Illegal input | Error = " + e.getMessage());
+                e.printStackTrace();
+            }
+            catch (NullPointerException e){
+                System.out.println("Crew has not been populated | Error = " + e.getMessage());
                 e.printStackTrace();
             }
         }
