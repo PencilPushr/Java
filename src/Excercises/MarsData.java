@@ -1,5 +1,6 @@
 package Excercises;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,50 +10,41 @@ import java.util.Scanner;
 
 public class MarsData {
 
-    private double[][] arrayOfMars;
-    public static String filepath = ("/home/alex/Java/src/Excercises/marsPolarSmall.csv");
+    public double[][] arrayOfMars;
+    public static String filepath = ("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises/marsPolarMedium.csv");
+    ///home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises/
+    ///home/alex/Java/src/Excercises/marsPolarSmall.csv
 
     public static void main(String[] args) {
         System.out.println(readDataN3());
+
+        JFrame j = new JFrame("Drawing");
+
+
     }
 
-    public static Double[][] readDataN3(){
-        /*ArrayList<String> arr = new ArrayList<>();
-        String line = "";
-        String splitBy = ",";
-        try {//parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new File("CSVDemo.csv"));
-            while ((line = br.readLine()) != null)   //returns a Boolean value
-            {
-                String[] employee = line.split(splitBy);    // use comma as separator
-            }
-        }
-        catch (FileNotFoundException e){
-            System.out.println("File not found | " + filepath);
-            e.printStackTrace();
-        }
-        2d array of strings, line and coordinates
-
-        */
-
-
-
-        ArrayList<String> arr = new ArrayList<>();
-
-        String  lineSplit[] = new String[3];
+    //Not sure what is asked here. It is impossible to store the line of doubles in 1st dimension and then the 3 elements
+    //it would cause an error because doubles cannot contain commas
+    public static String[][] readDataN3(){
+        String[][] splitElements = null;
+        String lineSplit[] = new String[4];
 
         try {
             Scanner s = new Scanner(new File(filepath));
-            String line = s.nextLine();
+            String line;
+
 
             while (s.hasNextLine()) {
+                line = s.nextLine();
                 lineSplit[0] = line;
                 lineSplit[1] = line.split(",")[0];
-                lineSplit[1] = line.split(",")[1];
-                lineSplit[1] = line.split(",")[2];
-            }
+                lineSplit[2] = line.split(",")[1];
+                lineSplit[3] = line.split(",")[2];
 
-            System.out.println(Arrays.toString(lineSplit));
+                System.out.println(Arrays.toString(lineSplit));
+
+                String[][] splitElements = new String[splitElements.length][(splitElements.length) * 3];
+            }
 
             s.close();
         }
@@ -61,7 +53,6 @@ public class MarsData {
             System.out.println("File not found | " + filepath);
             e.printStackTrace();
         }
-        Double[][] items = arr.toArray(new Double[arr.size()][arr.size()]);
-        return items;
+        return splitElements;
     }
 }

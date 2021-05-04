@@ -1,36 +1,27 @@
 package Excercises;
 
-import javax.naming.directory.InvalidSearchFilterException;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class MainCrew {
 
     private Crew crew;
+
     public static void main(String[] args) {
         MainCrew mainCrew = new MainCrew();
         try {
             mainCrew.menu();
-        } catch (FileNotFoundException e){
-        System.out.println("File could not be found | Error = " + e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("File could not be found | Error = " + e.getMessage());
         }
     }
 
-    public String askFile(){
-        System.out.println("enter the file path location including the file name containing the nationalities: ");
+    public void menu() throws FileNotFoundException {
+
+        System.out.println("Enter the file path location, including the file name containing the nationalities: ");
         Scanner s = new Scanner(System.in);
         String file = s.next();
-        return file;
-    }
-
-    public void menu() throws FileNotFoundException{
-
-        Scanner s = new Scanner(System.in);
-        String file = askFile();
         this.crew = new Crew(file);
 
         boolean stop = false;
@@ -60,12 +51,12 @@ public class MainCrew {
                         crew.PrintCrew();
                         break;
 
-                    case "3" :
+                    case "3":
                         crew.assembleMissionCrew();
                         crew.PrintCrew();
                         break;
 
-                    case "quit" :
+                    case "quit":
                         stop = true;
                         break;
 
@@ -73,14 +64,15 @@ public class MainCrew {
                         System.out.println("Invalid menu options entered!");
                         menu();
                 }
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("Illegal input | Error = " + e.getMessage());
                 //e.printStackTrace();
                 System.out.println(" ");
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("Crew has not been populated | Error = " + e.getMessage());
                 //e.printStackTrace();
                 System.out.println(" ");
+            }
         }
     }
 }
