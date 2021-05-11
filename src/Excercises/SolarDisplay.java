@@ -20,7 +20,7 @@ public class SolarDisplay extends JComponent {
 
         // Draw the sun
         g.setTransform(StarSun);
-        solarBodies(g, 80, Color.YELLOW);
+        //solarBodies(g, 80, Color.YELLOW);
 
         double percentRotation = System.currentTimeMillis() % 10000 / 10000.0;
         // To radians.

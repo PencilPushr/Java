@@ -66,7 +66,7 @@ public class Crew{
         Collections.shuffle(crew);
     }
 
-    public Astronaut getAstronautOfRank(String rank){
+    private Astronaut getAstronautOfRank(String rank){
         List valid = Arrays.asList(this.RANKS); //Create a list to validate the rank we are checking
         if (valid.contains(rank)){ // if the list valid contains the inputted string shuffle (fair chance at selection)
             Collections.shuffle(crew);
@@ -86,12 +86,23 @@ public class Crew{
     }
 
     public Map<String, Astronaut> assembleMissionCrew(){
-        Set<String> rank = new HashSet<>(Arrays.asList(this.RANKS)); //Creating a set
         HashMap<String, Astronaut> missionCrew = new HashMap<String, Astronaut>(); //
         for (int i = 0; i < this.RANKS.length; i++) {
             missionCrew.put(this.RANKS[i], this.getAstronautOfRank(this.RANKS[i]));
         }
         return missionCrew;
+    }
+
+    private void mapTest(){
+        HashMap<String, Integer> ageRegistry = new HashMap<String, Integer>();
+        ageRegistry.put("Doris", 50);
+        ageRegistry.get("Doris");
+        ageRegistry.keySet();
+        ageRegistry.put("Doris", 51);
+        ageRegistry.containsKey("Doris");
+        ageRegistry.remove("Doris");
+        ageRegistry.clear();
+        ageRegistry.size();
     }
 
 }

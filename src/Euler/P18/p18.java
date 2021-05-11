@@ -4,81 +4,71 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class p18 {
 
-    public static String filepath = "/home/alex/Java/src/Euler/P18/p067_triangle.txt";
+    public static String filepath = "/home/alex/Java/src/Euler/P18/Triangle.txt";
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         p18 main = new p18();
 
-        try {
-            //for (int i = 0; i < main.readinFile().length; i++){
-                System.out.println(Arrays.toString(main.readinFile()));
-           // }
-        }catch (FileNotFoundException e){
-            System.out.println("File could not be found | Error = " + e.getMessage());
-            e.printStackTrace();
-        }catch (NoSuchElementException f){
-            System.out.println("Incorrect Element selection switch to NEXTINT()" + f.getMessage());
-            f.printStackTrace();
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j <= i; j++){
+                //System.out.print(readinFile()[i][j] + " ");
+            }
+            //System.out.println("");
         }
+        algorithm();
     }
 
+    public static void algorithm() {
 
+        Integer[][] copy = readinFile();
 
-    public Integer[][] readinFile() throws FileNotFoundException, NoSuchElementException {
+       for (int i = copy.length -2; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                copy[i][j] = (copy[i][j]) + (Math.max((copy[i+1][j]), (copy[i+1][j+1])));
+            }
+           System.out.println(copy[i]);
+       }
+        System.out.println(copy[0][0]);
+/*
+        for (int k = 0; k < readinFile().length - 1; k++) {
+            int i = readinFile().length - k - 1;
+            for
+        }*/
+    }
+
+    public static Integer[][] readinFile(){
         ArrayList<Integer> arrL = new ArrayList<>();
-        Scanner s = new Scanner(new File(filepath));
-        int c = 1; // incremented number to use as filler
+        Scanner s = null;
+        try {
+            s = new Scanner(new File(filepath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        while(s.hasNextInt()){
+        while (true) {
+            assert s != null;
+            if (!s.hasNextInt()) break;
             arrL.add(s.nextInt());
         }
         s.close();
 
-        int rows = (int) (Math.sqrt((8 * 5050) + 1) -1)/2;
-        int columns = rows;
+        //120 for 18
+        //5050 for euler 67
+        int rows = (int) (Math.sqrt((8 * 120) + 1) - 1) / 2;
 
-        Integer[][] Tri = new Integer[100][100];
+        Integer[][] Tri = new Integer[rows][rows];
+
         for (int i = 0; i < rows; i++) {
+            int Ti = ((i + 1) * i) / 2;
             for (int j = 0; j <= i; j++) {
-                Tri[i][j] = c;
-                c++;
+                Tri[i][j] = arrL.get(Ti + j);
             }
-            Tri[i] = new Integer[i+1];
-
         }
         //String[] ezArray = arrL.toArray(new String[arrL.size()]);
         return Tri;
     }
-
-    public int arraysize() throws FileNotFoundException {
-        ArrayList<Integer> arrL = new ArrayList<>();
-        Scanner s = new Scanner(new File(filepath));
-
-        while(s.hasNextInt()){
-            arrL.add(s.nextInt());
-        }
-        s.close();
-
-        int abra = arrL.size();
-        return abra;
-    }
-/*
-    private ArrayList<Integer> getIntegerArray(ArrayList<String> stringArray) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        for(String stringValue : stringArray) {
-            try {
-                //Convert String to Integer, and store it into integer array list.
-                result.add(Integer.parseInt(stringValue));
-            } catch(NumberFormatException nfe) {
-                //System.out.println("Could not parse " + nfe);
-                Log.w("NumberFormat", "Parsing failed! " + stringValue + " can not be an integer");
-            }
-        }
-        return result;
-    }*/
 }

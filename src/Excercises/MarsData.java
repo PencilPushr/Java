@@ -43,7 +43,7 @@ public class MarsData {
 
                 System.out.println(Arrays.toString(lineSplit));
 
-                String[][] splitElements = new String[splitElements.length][(splitElements.length) * 3];
+                //String[][] splitElements = new String[splitElements.length][(splitElements.length) * 3];
             }
 
             s.close();
