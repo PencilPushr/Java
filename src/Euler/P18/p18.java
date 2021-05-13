@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 public class p18 {
 
-    public static String filepath = "/home/alex/Java/src/Euler/P18/Triangle.txt";
+    public static String filepath = "/home/averagejoe/IdeaProjects/Java/Rocketman/src/Euler/P18/Triangle.txt";
+    //laptop: /home/averagejoe/IdeaProjects/Java/Rocketman/src/Euler/P18/
+    //pc: "/home/alex/Java/src/Euler/P18/Triangle.txt"
 
     public static void main(String[] args){
         p18 main = new p18();
