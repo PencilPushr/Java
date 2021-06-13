@@ -1,23 +1,25 @@
 package Euler.P3;
 
 public class p3 {
-
+    private final long y = 600851475143L;
     public static void main(String[] args) {
-        int BigNumber = (int) Math.sqrt(13195);
         int currentPrime = 0;
-        for (int i = 2; i < BigNumber; i++) {
-            if (BigNumber % i == 0){
-
-            }
+        p3 project = new p3();
+        for (int i = 3; i < Math.sqrt(project.y); i+=2) {
+           if (project.isPrime(i) && project.y % i == 0){
+               currentPrime = i;
+           }
         }
+        System.out.println(currentPrime);
     }
 
-    /*public boolean isPrime(int x, i){
-        if (x % 2 == 0){
-            return false;
-        } else if (x % i){
-
+    public boolean isPrime(int x) {
+        for (int i = 3; i < Math.sqrt(x); i += 2){
+            if (x % i == 0){
+                return false;
+            }
         }
-    }*/
+        return true;
+    }
 
 }

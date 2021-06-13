@@ -24,6 +24,7 @@ public class p2 {
         System.out.println(sum);
     }
 
+
     /* cool way I found someone worked on this project after I did it my way on this piece of euler code
     int main() {
         long* fib = new long[3];

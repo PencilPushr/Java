@@ -53,7 +53,7 @@ public class MainCrew {
 
                     case "3":
                         crew.assembleMissionCrew();
-                        crew.PrintCrew();
+                        System.out.println(crew.assembleMissionCrew());
                         break;
 
                     case "quit":

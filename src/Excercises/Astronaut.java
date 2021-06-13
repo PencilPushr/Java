@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Astronaut implements Comparable<Astronaut>{
 
-    private String nationality;
-    private String rank;
-    private int rankNum;
-    private int age;
+        private String nationality;
+        private String rank;
+        private int rankNum;
+        private int age;
 
 
     public Astronaut(String nationality, String rank, int rankNum, int age) {
@@ -15,7 +15,6 @@ public class Astronaut implements Comparable<Astronaut>{
         this.rank = rank;
         this.rankNum = rankNum;
         this.age = age;
-
     }
 
     @Override

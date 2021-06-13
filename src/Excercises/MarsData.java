@@ -1,5 +1,7 @@
 package Excercises;
 
+import org.w3c.dom.ls.LSOutput;
+
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +13,7 @@ import java.util.Scanner;
 public class MarsData {
 
     public double[][] arrayOfMars;
-    public static String filepath = ("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises/marsPolarMedium.csv");
+    public static String filepath = ("/home/alex/Java/src/Excercises/marsPolarMedium.csv");
     ///home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises/
     ///home/alex/Java/src/Excercises/marsPolarSmall.csv
 
@@ -22,6 +24,18 @@ public class MarsData {
 
 
     }
+
+    //We are assuming that all the values can be multiplied by 1000 and then by 5 (or same as 200) -> for the y values only
+    //We assume that all the values can be multiplied by 100 -> for x values only
+    //We can always convert this data into an integer from a double without losing data
+
+    //this is lossless, because we can simply divide by 200 for y and 100 for x
+
+    //because of the way we are making this cartesian grid there will be gaps, so be mindful when mapping this.
+    public ArrayList<Integer> readData2D(){
+
+    }
+
 
     //Not sure what is asked here. It is impossible to store the line of doubles in 1st dimension and then the 3 elements
     //it would cause an error because doubles cannot contain commas
