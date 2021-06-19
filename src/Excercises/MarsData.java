@@ -32,9 +32,9 @@ public class MarsData {
     //this is lossless, because we can simply divide by 200 for y and 100 for x
 
     //because of the way we are making this cartesian grid there will be gaps, so be mindful when mapping this.
-    public ArrayList<Integer> readData2D(){
+    //public ArrayList<Integer> readData2D(){
 
-    }
+    //}
 
 
     //Not sure what is asked here. It is impossible to store the line of doubles in 1st dimension and then the 3 elements
