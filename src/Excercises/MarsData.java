@@ -17,11 +17,11 @@ public class MarsData {
     ///home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises/
     ///home/alex/Java/src/Excercises/marsPolarSmall.csv
 
-    public static void main(String[] args) {
-        System.out.println(readDataN3());
+    public static void cheese() {
+        Integer[][] marsMap = readMarsData();
 
-        JFrame j = new JFrame("Drawing");
-
+        //JFrame j = new JFrame("Drawing");
+        System.out.println("Testerisng");
 
     }
 
@@ -32,41 +32,36 @@ public class MarsData {
     //this is lossless, because we can simply divide by 200 for y and 100 for x
 
     //because of the way we are making this cartesian grid there will be gaps, so be mindful when mapping this.
-    //public ArrayList<Integer> readData2D(){
+    public static Integer[][] readMarsData(){
+        ArrayList<Integer[]> store = new ArrayList<Integer[]>();
+        Scanner s = null;
 
-    //}
-
-
-    //Not sure what is asked here. It is impossible to store the line of doubles in 1st dimension and then the 3 elements
-    //it would cause an error because doubles cannot contain commas
-    public static String[][] readDataN3(){
-        String[][] splitElements = null;
-        String lineSplit[] = new String[4];
-
-        try {
-            Scanner s = new Scanner(new File(filepath));
-            String line;
-
-
-            while (s.hasNextLine()) {
-                line = s.nextLine();
-                lineSplit[0] = line;
-                lineSplit[1] = line.split(",")[0];
-                lineSplit[2] = line.split(",")[1];
-                lineSplit[3] = line.split(",")[2];
-
-                System.out.println(Arrays.toString(lineSplit));
-
-                //String[][] splitElements = new String[splitElements.length][(splitElements.length) * 3];
+        try{
+            s = new Scanner(new File(MarsData.filepath));
+            while (true){
+                assert s != null;
+                if (!s.hasNextLine()) break;
+                Integer[] temp = new Integer[3];
+                String line = s.nextLine();
+                //Do each column, one by one.
+                String x = line.split(",")[0];
+                String y = line.split(",")[1];
+                String z = line.split(",")[2];
+                //Here, we get the x coordinate.
+                temp[0] = (int) (Double.parseDouble(x)*200);
+                //Here, we get the y coordiante.
+                temp[1] = (int) (Double.parseDouble(y)*100);
+                //Here, we get the z coordiante.
+                temp[2] = Integer.parseInt(z);
+                //Now, the row is ready.
+                store.add(temp);
             }
-
             s.close();
+            return (Integer[][]) store.toArray();
+        }catch (FileNotFoundException e){//catch what?
+            e.printStackTrace();
+            return new Integer[0][0];
         }
 
-        catch (FileNotFoundException e){
-            System.out.println("File not found | " + filepath);
-            e.printStackTrace();
-        }
-        return splitElements;
     }
 }
