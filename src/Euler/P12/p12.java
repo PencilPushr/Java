@@ -38,6 +38,4 @@ public class p12 {
 
         return counter;
     }
-
-
 }
