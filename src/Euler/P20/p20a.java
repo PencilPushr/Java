@@ -11,9 +11,9 @@ public class p20a {
         int[] array = new int[1];
         array[0] = 1;
 
-        for (int i = 2; i < 101; i++) {
+       /* for (int i = 2; i < 101; i++) {
             array = p.arrayMultiplication(i, array);
-        }
+        }*/
 
         int total = 0;
 
