@@ -43,4 +43,16 @@ public class Patient implements Comparable<Patient>{
     public int hashCode() {
         return Objects.hash(brainRegion, method, age);
     }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public String getBrainRegion() {
+        return this.brainRegion;
+    }
+
+    public String getMethod() {
+        return this.method;
+    }
 }
