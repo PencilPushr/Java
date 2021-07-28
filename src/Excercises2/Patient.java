@@ -31,10 +31,15 @@ public class Patient implements Comparable<Patient>{
         return result;
     }
 
+
     @Override
     public boolean equals(Object o) {
+        //First checks if it's the same object
         if (this == o) return true;
+        //otherwise check if the object is null or if the getClass() is not equal to the object Class
         if (o == null || getClass() != o.getClass()) return false;
+        //if the code makes it this far, create a new patient, casting it to the input object
+        // and return -> age, brainRegion and method
         Patient patient = (Patient) o;
         return age == patient.age && Objects.equals(brainRegion, patient.brainRegion) && Objects.equals(method, patient.method);
     }
@@ -44,6 +49,7 @@ public class Patient implements Comparable<Patient>{
         return Objects.hash(brainRegion, method, age);
     }
 
+    //don't think we need setters, only providing getters, as in question 2, it appears we never require them.
     public int getAge() {
         return this.age;
     }
@@ -55,4 +61,25 @@ public class Patient implements Comparable<Patient>{
     public String getMethod() {
         return this.method;
     }
+
+    /*
+
+                    I have no idea what I'm doing
+                    ░░░░░░░░░░░░░░░░░░░░░░█████████░░░░░░░░░
+                    ░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███░░░░░░░
+                    ░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███░░░░
+                    ░░░█▒▒▒▒▒▒█░░░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░
+                    ░░░░█▒▒▒▒▒█░░░██▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒███░
+                    ░░░░░█▒▒▒█░░░█▒▒▒▒▒▒████▒▒▒▒████▒▒▒▒▒▒██
+                    ░░░█████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+                    ░░░█▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒██
+                    ░██▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██
+                    ██▒▒▒███████████▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒██
+                    █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒████████▒▒▒▒▒▒▒██
+                    ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░
+                    ░█▒▒▒███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░
+                    ░██▒▒▒▒▒▒▒▒▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█░░░░░
+                    ░░████████████░░░█████████████████░░░░░░
+            */
+
 }

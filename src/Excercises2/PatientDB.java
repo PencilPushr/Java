@@ -1,8 +1,6 @@
 package Excercises2;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PatientDB {
 
@@ -14,6 +12,38 @@ public class PatientDB {
 
     public PatientDB(String input){
 
+        //TODO: needs a try catch block in case person attempts give file with incorrect values
+        // -> this might be smarter if we attempt it in PatientMAIN
+
+        //try catch block?
+        brainRegions = brainTxtToArray(input);
+
+
+
+    }
+
+    //TODO: this isn't actually a todo
+    // however I'm questioning whether or not I simply make this void and it assigns brainRegions instead?
+    public String[] brainTxtToArray(String input){
+        List<String> stringArrayList = new ArrayList<String>();
+        String[] strings;
+        Scanner s = new Scanner(input);
+
+        while(s.hasNextLine()){
+            stringArrayList.add(s.nextLine());
+        }
+        s.close();
+
+        strings = stringArrayList.toArray(new String[stringArrayList.size()]);
+
+        return strings;
+    }
+
+    public int randomAge(){
+
+    }
+
+    public void initalisePatient(){
 
     }
 
