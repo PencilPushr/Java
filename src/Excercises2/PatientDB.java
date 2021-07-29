@@ -19,12 +19,9 @@ public class PatientDB {
         // or continuously attempt to through it until we reach main?
 
         //try catch block?
-        try {
-            brainTxtToArray(input);
-        }
-        catch (FileNotFoundException e){
-                throw e;
-            }
+
+        brainTxtToArray(input);
+
         initialisePatients();
 
 
@@ -34,17 +31,12 @@ public class PatientDB {
         File f = new File(input);
 
         List<String> stringArrayList = new ArrayList<String>();
-        try {
-            Scanner s = new Scanner(f);
-            while(s.hasNextLine()){
-                stringArrayList.add(s.nextLine());
-            }
-            s.close();
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-            throw e;
-        }
 
+        Scanner s = new Scanner(f);
+        while(s.hasNextLine()) {
+            stringArrayList.add(s.nextLine());
+            s.close();
+        }
 
         brainRegions = stringArrayList.toArray(new String[0]);
     }
@@ -97,8 +89,7 @@ public class PatientDB {
 
     //There has to be an easier implementation than using this method in conjunction with generatePS()
     //but I can't seem to make generatePatientSample() return what I want, unless this function is created.
-    //This is essentially a patientDB.get(i) but with extra steps -> checks if we already have a method existing and add
-    //the others that are not in the list into it.
+    //This is essentially a patientDB.get(i) but with extra steps -> checks if we already have a method existing and add the others that are not in the list into it.
     //but it annoys me to no end because I'm sure the overriden equals()+CompareTo() has its use, but I don't know where.
     private Patient patientCorrespondingToMethod(String method){
         List valid = Arrays.asList(this.METHODS); //Create a list to validate the method we are checking
@@ -106,7 +97,7 @@ public class PatientDB {
             Collections.shuffle(patientDB);
             for (int i = 0; i < this.patientDB.size(); i++){
                 if (this.patientDB.get(i).getMethod().equals(method)){ // if the Patient of method x is equal to the String method
-                    return this.patientDB.get(i); //return the Astronaut.
+                    return this.patientDB.get(i);
                 }
             }
             System.out.println("There is no Patient of this method | Error"); //this has been called before there are astronauts in the list.
