@@ -13,6 +13,7 @@ public class Hospitals {
         //this.percentages = percentages;
         //Java didn't like me doing this
 
+        //sanity check, can't have 0 of either.
         if (noOfHosp < 1 || noOfBeds < 1){
             noOfBeds = 1;
             noOfHosp = 1;

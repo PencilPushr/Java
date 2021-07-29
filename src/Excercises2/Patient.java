@@ -49,7 +49,8 @@ public class Patient implements Comparable<Patient>{
         return Objects.hash(brainRegion, method, age);
     }
 
-    //don't think we need setters, only providing getters, as in question 2, it appears we never require them.
+    //getters
+
     public int getAge() {
         return this.age;
     }
@@ -62,24 +63,17 @@ public class Patient implements Comparable<Patient>{
         return this.method;
     }
 
-    /*
+    //setters
 
-                    I have no idea what I'm doing
-                    ░░░░░░░░░░░░░░░░░░░░░░█████████░░░░░░░░░
-                    ░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███░░░░░░░
-                    ░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███░░░░
-                    ░░░█▒▒▒▒▒▒█░░░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░
-                    ░░░░█▒▒▒▒▒█░░░██▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒███░
-                    ░░░░░█▒▒▒█░░░█▒▒▒▒▒▒████▒▒▒▒████▒▒▒▒▒▒██
-                    ░░░█████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
-                    ░░░█▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒██
-                    ░██▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██
-                    ██▒▒▒███████████▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒██
-                    █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒████████▒▒▒▒▒▒▒██
-                    ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░
-                    ░█▒▒▒███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░
-                    ░██▒▒▒▒▒▒▒▒▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█░░░░░
-                    ░░████████████░░░█████████████████░░░░░░
-            */
+    public void setAge(int age) {
+        this.age = age;
+    }
 
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public void setBrainRegion(String brainRegion) {
+        this.brainRegion = brainRegion;
+    }
 }
