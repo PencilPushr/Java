@@ -90,7 +90,7 @@ public class PatientDB {
     //There has to be an easier implementation than using this method in conjunction with generatePS()
     //but I can't seem to make generatePatientSample() return what I want, unless this function is created.
     //This is essentially a patientDB.get(i) but with extra steps -> checks if we already have a method existing and add the others that are not in the list into it.
-    //but it annoys me to no end because I'm sure the overriden equals()+CompareTo() has its use, but I don't know where.
+    //but it annoys me to no end because I'm sure the overridden equals()+CompareTo() has its use, but I don't know where.
     private Patient patientCorrespondingToMethod(String method){
         List valid = Arrays.asList(this.METHODS); //Create a list to validate the method we are checking
         if (valid.contains(method)){ // if the list valid contains the inputted string shuffle
