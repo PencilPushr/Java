@@ -35,8 +35,8 @@ public class PatientDB {
         Scanner s = new Scanner(f);
         while(s.hasNextLine()) {
             stringArrayList.add(s.nextLine());
-            s.close();
         }
+        s.close();
 
         brainRegions = stringArrayList.toArray(new String[0]);
     }
@@ -58,7 +58,7 @@ public class PatientDB {
     }
 
 
-    public void printPatientDB(){
+    public void printPatientDB(){ //I am fully aware that by having a print function in sortDB and shuffleDB, makes this code redundant.
         for (int i = 0; i < patientDB.size(); i++) {
             System.out.println();
         }
@@ -107,8 +107,24 @@ public class PatientDB {
         System.exit(0);
         return null;
     }
-    
-        /*
+
+    public String[] getBrainRegions() {
+        return brainRegions;
+    }
+
+    public static String[] getMETHODS() {
+        return METHODS;
+    }
+
+    public void setBrainRegions(String[] brainRegions) {
+        this.brainRegions = brainRegions;
+    }
+
+    public void setPatientDB(List<Patient> patientDB) {
+        this.patientDB = patientDB;
+    }
+
+    /*
                     I have no idea what I'm doing
                     ░░░░░░░░░░░░░░░░░░░░░░█████████░░░░░░░░░
                     ░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███░░░░░░░

@@ -1,15 +1,16 @@
 package Excercises2;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainPatientDB {
 
 
-    //it appears from testing that unfortunately everything will have to have its own loop and have one giant loop acting as a container,
-    //I don't know why, but for the life of me I could not figure out why everytime an input for exit was entered it had to be entered twice
-    //and even more fucking infuriating was the more options that were are selected the more the code broke down
+    //it appears from testing that everything will have to have its own loop and have one giant loop acting as a container,
 
     //pseudo code
     /*while (!isSentinalValue) {
@@ -21,39 +22,72 @@ public class MainPatientDB {
     }
 */
 
-
     public static void main(String[] args){
         //MainPatientDB mainp = new MainPatientDB();
+
+        String[] menuItems = new String[]{"1", "2", "3", "quit"};
+        String menuInput;
 
         //need a boolean for the first loop -> where we enter the file
 
         boolean stop = false;
+        String fileInput;
+        Scanner s = new Scanner(System.in);
+
 
         while (!stop) {
             try {
-                String a = getTextFile();
-
-            } catch
+                System.out.println("Please input the file name: ");
+                fileInput = s.nextLine();
+                s = new Scanner(new File(fileInput));
+                PatientDB pat = new PatientDB(fileInput);
+                s.close();
+                Scanner p = new Scanner(System.in);
+                while(!stop){
+                    menuOptions();
+                    menuInput = p.nextLine();
+                    String temp = whatIsInput(menuItems, menuInput); //if this breaks, initialise new String "temp" outside and assign then it.
+                    if (temp != null && !temp.isEmpty()){ // this took me so long to realise I could do this
+                        //could have done a switch, but I felt like the code would break some how, some where and in some way.
+                        if (temp.equals("1")){
+                            pat.sortDB();
+                        }
+                        if (temp.equals("2")){
+                            pat.shuffleDB();
+                        }
+                        if (temp.equals("3")){
+                            System.out.println(pat.generatePatientSample()); // cba with creating new method to print it.
+                        }
+                        if (temp.equals("quit")){
+                            stop = true;
+                        }
+                    } else {
+                        System.out.println("Sorry, invalid entry!");
+                    }
+                }
+                stop = true;
+                p.close();
+            } catch (FileNotFoundException e){
+                System.out.println("File does not exist");
+            } catch (NullPointerException ignored){
+                //do not care if we get a null pointer
+            }
         }
 
     }
 
-    public static void menu() throws FileNotFoundException {
+    public static String whatIsInput(String[] menuIt, String menuIn){
 
-        //Scanner s = new Scanner(System.in);
+        String temp = null;
 
-    }
-
-
-    public String isInputValid(String s) {
-
-        if () {
+        for (int i = 0; i < menuIt.length; i++) {
+            if (menuIn.equals(menuIt[i])){
+                temp =menuIt[i].toString();
+            }
         }
+        return temp;
 
-
-        return string;
     }
-
 
     public static void menuOptions(){
         System.out.println(" ----------------- MENU ----------------- ");
@@ -62,13 +96,5 @@ public class MainPatientDB {
         System.out.println(" 3 to generate patient sample");
         System.out.println(" quit to quit ");
         System.out.println(" input: ");
-    }
-
-    public static String getTextFile(){
-        System.out.println("Please input the file name: ");
-        Scanner s = new Scanner(System.in);
-        String fileInput = s.nextLine();
-
-        return fileInput;
     }
 }
