@@ -64,7 +64,6 @@ public class MRIData {
                 array2D.add(temparraylist);
             }
             array3D.add(array2D);
-            i++;
         }
         s.close();
 
