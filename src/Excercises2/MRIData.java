@@ -13,6 +13,7 @@ public class MRIData {
 
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
+    private int fileNumber = 151;
 
     public static void main(String[] args) {
 
@@ -40,9 +41,17 @@ public class MRIData {
 
         Scanner s = null;
 
+        //should there be an attempt to have this function read only 1 file
+        //we are just going to call readData2D, just seems more logical
+        if(file1 == file2){
+            this.fileNumber = file1;
+            readData2D();
+        }
+
         //this should work as a for loop, for whatever reason it simply does not, this code will likely have to be modified.
-        while (file1 != file2) {
-            s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + file1 +".csv"));
+        for (int i = file1; i <= file2; i++)
+         {
+            s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + i +".csv"));
 
             array2D = new ArrayList<ArrayList<Integer>>();
 
@@ -55,7 +64,7 @@ public class MRIData {
                 array2D.add(temparraylist);
             }
             array3D.add(array2D);
-            file1++;
+            i++;
         }
         s.close();
 
@@ -76,7 +85,6 @@ public class MRIData {
         String[] string = null;
         ArrayList<Integer> temp;
 
-        //ignore code, come back for less hardcoded stuff, when we have more ideas for better dynamic logic
         //goal -> read in and fill in reverse the 2d array. i.e.: this.array[j][i]
         //1. dynamically read in the file and return a temp for how many rows there are
         //2. assign temp to rows
@@ -84,9 +92,11 @@ public class MRIData {
         //4. assign temp2 to columns
         //5. fille number of rows with columns
 
-        //Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + filename +".csv"));
+        //Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + this.fileNumber +".csv"));
+        //Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + this.fileNumber , ".csv")); there is a comma between this.fileNumber , ".csv"
+        //I am unaware what the difference is.
 
-        Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/151.csv"));
+        Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + this.fileNumber + "+.csv"));
 
 
         while(s.hasNext()){
@@ -101,7 +111,7 @@ public class MRIData {
 
         //al.toArray(this.arrayOfMRI2D);
 
-        //System.out.println("NUMBER 9 LARGE, 2 NUMBER 5's...AND A LARGE SODA");
+        //debug print
         for (int i = 0; i < al.size(); i++) {
             for (int j = 0; j < al.get(i).size(); j++) {
                 System.out.print(al.get(i).get(j).toString());
