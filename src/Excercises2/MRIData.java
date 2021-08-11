@@ -38,17 +38,13 @@ public class MRIData {
         ArrayList<ArrayList<Integer>> array2D;
         ArrayList<Integer> temparraylist;
         String[] tempString = null;
+        int temp1 = 0;
+        int temp2 = 0;
+        int temp3 = 0;
 
         Scanner s = null;
 
-        //should there be an attempt to have this function read only 1 file
-        //we are just going to call readData2D, just seems more logical
-        if(file1 == file2){
-            this.fileNumber = file1;
-            readData2D();
-        }
 
-        //this should work as a for loop, for whatever reason it simply does not, this code will likely have to be modified.
         for (int i = file1; i <= file2; i++)
          {
             s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + i +".csv"));
@@ -61,28 +57,46 @@ public class MRIData {
                 for (int j = 0; j < tempString.length; j++) {
                     temparraylist.add(Integer.parseInt(tempString[j]));
                 }
+                temp1 = temparraylist.size();
                 array2D.add(temparraylist);
             }
+            temp2 = array2D.size();
             array3D.add(array2D);
         }
+        temp3 = array3D.size();
         s.close();
 
+        this.arrayOfMRI3D = new int[temp3][temp2][temp1];
 
-        for (int i = 0; i < array3D.size(); i++) {
-            for (int j = 0; j < array3D.get(i).size(); j++) {
-                for (int k = 0; k < array3D.get(i).get(j).size(); k++) {
-                    System.out.print(array3D.get(i).get(j).get(k).toString());
+        for (int k = 0; k < array3D.size(); k++) {
+            for (int j = 0; j < array3D.get(k).size(); j++) {
+                for (int i = 0; i < array3D.get(k).get(j).size(); i++) {
+                    this.arrayOfMRI3D[i][j][k] = array3D.get(i).get(j).get(k);
+                }
+            }
+        }
+
+
+        //debug printing
+
+        /*for (int i = 0; i < this.arrayOfMRI3D.length; i++) {
+            for (int j = 0; j < this.arrayOfMRI3D[i].length; j++) {
+                for (int k = 0; k < this.arrayOfMRI3D[i][j].length; k++) {
+                    System.out.print(this.arrayOfMRI3D[i][j][k]);
                 }
                 System.out.println("/n");
             }
-        }
+        }*/
+
     }
 
 
     public void readData2D() throws FileNotFoundException {
-        ArrayList<ArrayList<Integer>> al = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> array2D = new ArrayList<ArrayList<Integer>>();
         String[] string = null;
         ArrayList<Integer> temp;
+        int temp1 = 0;
+        int temp2 = 0;
 
         //goal -> read in and fill in reverse the 2d array. i.e.: this.array[j][i]
         //1. dynamically read in the file and return a temp for how many rows there are
@@ -104,20 +118,31 @@ public class MRIData {
             for (int i = 0; i < string.length; i++) {
                 temp.add(Integer.parseInt(string[i]));
             }
-            al.add(temp);
+            temp1 = temp.size();
+            array2D.add(temp);
         }
+        temp2 = array2D.size();
         s.close();
 
-        //al.toArray(this.arrayOfMRI2D);
+        //array2D.toArray(this.arrayOfMRI2D);
+
+        this.arrayOfMRI2D = new int[temp2][temp1];
+
+        for (int i = 0; i < array2D.size(); i++) {
+            for (int j = 0; j < array2D.get(i).size(); j++) {
+                    this.arrayOfMRI2D[j][i] = array2D.get(i).get(j);
+            }
+        }
+
 
         //debug print
-        for (int i = 0; i < al.size(); i++) {
-            for (int j = 0; j < al.get(i).size(); j++) {
-                System.out.print(al.get(i).get(j).toString());
+
+        for (int l = 0; l < this.arrayOfMRI2D.length; l++) {
+            for (int m = 0; m < this.arrayOfMRI2D[l].length; m++) {
+                System.out.print(this.arrayOfMRI2D[l][m]);
             }
             System.out.println("/n");
         }
-
 
     }
 
