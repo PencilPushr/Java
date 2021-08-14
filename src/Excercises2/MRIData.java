@@ -13,7 +13,6 @@ public class MRIData {
 
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
-    private int fileNumber = 151;
 
     public static void main(String[] args) {
 
@@ -28,7 +27,7 @@ public class MRIData {
 
     }
 
-    public void readData3D(int file1, int file2) throws FileNotFoundException {
+    public void readData3D(int file1, int file2) throws FileNotFoundException, NullPointerException {
 
         //Using the class TwoDimentionalArrayList, it would be possible to make this code more efficient but for now
         // this code shall suffice
@@ -63,7 +62,7 @@ public class MRIData {
             temp2 = array2D.size();
             array3D.add(array2D);
         }
-        temp3 = array3D.size();
+        temp3 = array3D.size(); //this is redundant, but it makes the code easier to understand
         s.close();
 
         this.arrayOfMRI3D = new int[temp3][temp2][temp1];
@@ -71,7 +70,7 @@ public class MRIData {
         for (int k = 0; k < array3D.size(); k++) {
             for (int j = 0; j < array3D.get(k).size(); j++) {
                 for (int i = 0; i < array3D.get(k).get(j).size(); i++) {
-                    this.arrayOfMRI3D[i][j][k] = array3D.get(i).get(j).get(k);
+                    this.arrayOfMRI3D[k][j][i] = array3D.get(k).get(j).get(i);
                 }
             }
         }
@@ -92,6 +91,9 @@ public class MRIData {
 
 
     public void readData2D() throws FileNotFoundException {
+
+        int fileNumber = 151;
+
         ArrayList<ArrayList<Integer>> array2D = new ArrayList<ArrayList<Integer>>();
         String[] string = null;
         ArrayList<Integer> temp;
@@ -109,7 +111,7 @@ public class MRIData {
         //Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + this.fileNumber , ".csv")); there is a comma between this.fileNumber , ".csv"
         //I am unaware what the difference is.
 
-        Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + this.fileNumber + "+.csv"));
+        Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + fileNumber + "+.csv"));
 
 
         while(s.hasNext()){
@@ -121,7 +123,7 @@ public class MRIData {
             temp1 = temp.size();
             array2D.add(temp);
         }
-        temp2 = array2D.size();
+        temp2 = array2D.size(); //is redundant, but makes code more readable
         s.close();
 
         //array2D.toArray(this.arrayOfMRI2D);
