@@ -1,7 +1,5 @@
 package Excercises2;
 
-import Excercises.MarsData;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -77,7 +75,7 @@ public class MRIData {
 
 
         //debug printing
-
+        /*
         for (int i = 0; i < this.arrayOfMRI3D.length; i++) {
             for (int j = 0; j < this.arrayOfMRI3D[i].length; j++) {
                 for (int k = 0; k < this.arrayOfMRI3D[i][j].length; k++) {
@@ -86,6 +84,7 @@ public class MRIData {
                 System.out.println("/n");
             }
         }
+         */
 
     }
 
@@ -106,10 +105,6 @@ public class MRIData {
         //3. initalise and return the temp2 of number of columns
         //4. assign temp2 to columns
         //5. fille number of rows with columns
-
-        //Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + this.fileNumber +".csv"));
-        //Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + this.fileNumber , ".csv")); there is a comma between this.fileNumber , ".csv"
-        //I am unaware what the difference is.
 
         Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + fileNumber + "+.csv"));
 
