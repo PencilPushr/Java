@@ -143,6 +143,10 @@ public class MRIData {
 
     }
 
+    //Concerning both gets -> pure white is 255,255,255 for R,G,B
+    //Therefore to simply convert this into greyscale, by returning the values three times would provide the grey scale factor we need
+    //For example -> file 163 coords is 98 (this is made up) in gI3D -> by returning this three times for each stream we get 98,98,98
+
     public int getIntensity2D(int x, int y){
 
         return this.arrayOfMRI2D[y][x];
