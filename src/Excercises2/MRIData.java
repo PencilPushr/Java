@@ -78,14 +78,14 @@ public class MRIData {
 
         //debug printing
 
-        /*for (int i = 0; i < this.arrayOfMRI3D.length; i++) {
+        for (int i = 0; i < this.arrayOfMRI3D.length; i++) {
             for (int j = 0; j < this.arrayOfMRI3D[i].length; j++) {
                 for (int k = 0; k < this.arrayOfMRI3D[i][j].length; k++) {
                     System.out.print(this.arrayOfMRI3D[i][j][k]);
                 }
                 System.out.println("/n");
             }
-        }*/
+        }
 
     }
 
