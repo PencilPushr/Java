@@ -17,9 +17,9 @@ public class MRIData {
         MRIData mri = new MRIData();
 
         try{
-            //mri.readData2D();
-            mri.readData3D(151,152);
-        }catch (FileNotFoundException | NumberFormatException e){
+            mri.readData2D();
+            //mri.readData3D(151,152);
+        }catch (FileNotFoundException | NumberFormatException | NullPointerException e){
             e.printStackTrace();
         }
 
@@ -104,9 +104,9 @@ public class MRIData {
         //2. assign temp to rows
         //3. initalise and return the temp2 of number of columns
         //4. assign temp2 to columns
-        //5. fille number of rows with columns
+        //5. fill number of rows with columns
 
-        Scanner s = new Scanner(new File("/home/averagejoe/IdeaProjects/Java/Rocketman/src/Excercises2/mri/" + fileNumber + "+.csv"));
+        Scanner s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + fileNumber + ".csv"));
 
 
         while(s.hasNext()){
@@ -127,7 +127,7 @@ public class MRIData {
 
         for (int i = 0; i < array2D.size(); i++) {
             for (int j = 0; j < array2D.get(i).size(); j++) {
-                    this.arrayOfMRI2D[j][i] = array2D.get(i).get(j);
+                    this.arrayOfMRI2D[i][j] = array2D.get(i).get(j);
             }
         }
 

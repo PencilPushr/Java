@@ -9,8 +9,7 @@ public class MainMRI {
         JFrame j = new JFrame("Drawing");
         j.setSize(302,370);
         j.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        j.add(MRIDisplay);
-
+        j.add(new MRIDisplay());
         j.setVisible(true);
     }
 
