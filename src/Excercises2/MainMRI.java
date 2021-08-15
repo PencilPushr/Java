@@ -1,6 +1,7 @@
 package Excercises2;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainMRI {
 
