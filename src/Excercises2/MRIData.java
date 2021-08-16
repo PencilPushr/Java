@@ -12,7 +12,7 @@ public class MRIData {
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
 
         MRIData mri = new MRIData();
 
@@ -23,6 +23,11 @@ public class MRIData {
             e.printStackTrace();
         }
 
+    }*/
+
+    public MRIData() throws FileNotFoundException{
+        readData2D();
+        readData3D(1, 316);
     }
 
     public void readData3D(int file1, int file2) throws FileNotFoundException, NullPointerException {
@@ -157,4 +162,11 @@ public class MRIData {
         return this.arrayOfMRI3D[z][y][x];
     }
 
+    public int[][] getArrayOfMRI2D() {
+        return this.arrayOfMRI2D;
+    }
+
+    public int[][][] getArrayOfMRI3D() {
+        return this.arrayOfMRI3D;
+    }
 }
