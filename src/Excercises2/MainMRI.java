@@ -28,7 +28,7 @@ public class MainMRI {
             }
         };
         j.addKeyListener(keyListener);
-        j.getContentPane().setPreferredSize(new Dimension(302,370)); //setting size
+        j.getContentPane().setPreferredSize(new Dimension(370,302)); //setting size
         j.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Java will now exit and stop the program after being closed
         j.pack(); //set window to setPreferredSize
         try{
