@@ -24,6 +24,7 @@ public class MainSolar {
 
 
 
+
 /*        while (true) {
             Thread.sleep(10);
             SolarDisplay.repaint();

@@ -1,4 +1,11 @@
 package Excercises2;
 
-public class BrainLobeGUI {
+import javax.swing.*;
+
+public class BrainLobeGUI extends JComponent {
+
+    public BrainLobeGUI(){
+
+    }
+
 }
