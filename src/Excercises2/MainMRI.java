@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 
 public class MainMRI {
 
@@ -27,11 +28,14 @@ public class MainMRI {
             }
         };
         j.addKeyListener(keyListener);
-        j.getContentPane().setPreferredSize(new Dimension(302,370));
-        //j.setSize(302,370);
-        j.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        tr
-        j.add(new MRIDisplay());
+        j.getContentPane().setPreferredSize(new Dimension(302,370)); //setting size
+        j.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Java will now exit and stop the program after being closed
+        j.pack(); //set window to setPreferredSize
+        try{
+            j.add(new MRIDisplay());
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
         j.setVisible(true);
         j.repaint();
     }

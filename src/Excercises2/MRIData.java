@@ -136,6 +136,7 @@ public class MRIData {
             }
         }
 
+/*
 
         //debug print
 
@@ -145,6 +146,7 @@ public class MRIData {
             }
             System.out.println("/n");
         }
+*/
 
     }
 
