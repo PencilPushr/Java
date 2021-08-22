@@ -5,7 +5,7 @@ import javax.swing.*;
 // transformation of user coordinates to screen coordinates
 public class Plot extends JComponent {
     // dimensions of plotting area with default values
-    public int width = 600, height = 600;
+    public int width = 370, height = 302;
     // dimensions of user-space coordinates with default values
     public double xmin=0,  xmax=1, ymin=0, ymax=1;
     // transformation of coordinates

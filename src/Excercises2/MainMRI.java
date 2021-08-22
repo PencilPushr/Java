@@ -25,10 +25,14 @@ public class MainMRI {
                 int keyCode = keyEvent.getKeyCode();
 
                 if (keyCode == KeyEvent.VK_LEFT){
-
+                    //mri.setcurrentSlice(mri.getcurrentSlice() - 1);
                 }
 
                 if (keyCode == KeyEvent.VK_RIGHT){
+                    //mri.setcurrentSlice(mri.getcurrentSlice() + 1);
+                }
+
+                if (keyCode == KeyEvent.VK_UP){
 
                 }
             }

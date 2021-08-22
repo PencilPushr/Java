@@ -11,6 +11,7 @@ public class MRIData {
 
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
+    private int[][][] arrayOfMRI3Dvertical;
 
 /*    public static void main(String[] args) {
 
@@ -70,6 +71,7 @@ public class MRIData {
 
         this.arrayOfMRI3D = new int[temp3][temp2][temp1];
 
+        //horizontal slices
         for (int k = 0; k < array3D.size(); k++) {
             for (int j = 0; j < array3D.get(k).size(); j++) {
                 for (int i = 0; i < array3D.get(k).get(j).size(); i++) {
@@ -79,18 +81,14 @@ public class MRIData {
         }
 
 
-        //debug printing
-        /*
-        for (int i = 0; i < this.arrayOfMRI3D.length; i++) {
-            for (int j = 0; j < this.arrayOfMRI3D[i].length; j++) {
-                for (int k = 0; k < this.arrayOfMRI3D[i][j].length; k++) {
-                    System.out.print(this.arrayOfMRI3D[i][j][k]);
+        //vertical slices
+        for (int k = 0; k < array3D.size(); k++) {
+            for (int j = 0; j < array3D.get(k).size(); j++) {
+                for (int i = 0; i < array3D.get(k).get(j).size(); i++) {
+                    this.arrayOfMRI3D[k][i][j] = array3D.get(k).get(i).get(j);
                 }
-                System.out.println("/n");
             }
         }
-         */
-
     }
 
 
@@ -104,14 +102,7 @@ public class MRIData {
         int temp1 = 0;
         int temp2 = 0;
 
-        //goal -> read in and fill in reverse the 2d array. i.e.: this.array[j][i]
-        //1. dynamically read in the file and return a temp for how many rows there are
-        //2. assign temp to rows
-        //3. initalise and return the temp2 of number of columns
-        //4. assign temp2 to columns
-        //5. fill number of rows with columns
-
-        Scanner s = new Scanner(new File("/home/archjoe/IdeaProjects/Java/src/Excercises2/mri/mri/" + fileNumber + ".csv"));
+        Scanner s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + fileNumber + ".csv"));
 
 
         while(s.hasNext()){
@@ -126,7 +117,6 @@ public class MRIData {
         temp2 = array2D.size(); //is redundant, but makes code more readable
         s.close();
 
-        //array2D.toArray(this.arrayOfMRI2D);
 
         this.arrayOfMRI2D = new int[temp2][temp1];
 
@@ -135,18 +125,6 @@ public class MRIData {
                     this.arrayOfMRI2D[i][j] = array2D.get(i).get(j);
             }
         }
-
-/*
-
-        //debug print
-
-        for (int l = 0; l < this.arrayOfMRI2D.length; l++) {
-            for (int m = 0; m < this.arrayOfMRI2D[l].length; m++) {
-                System.out.print(this.arrayOfMRI2D[l][m]);
-            }
-            System.out.println("/n");
-        }
-*/
 
     }
 

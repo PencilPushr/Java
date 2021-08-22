@@ -7,46 +7,38 @@ public class MRIDisplay extends Plot{
 
     private MRIData mriData;
     private int currentSlice;
-    Image image;
 
     public MRIDisplay() throws FileNotFoundException {
         this.mriData = new MRIData();
         this.currentSlice = 151;
-    }
-
-    public void GrayScaleGenerator(){
-/*
-
-
-        for (int i = 0; i < this.mriData.getIntensity3D(i,i,i); i++) {
-            for (int j = 0; j < ; j++) {
-                for (int k = 0; k < ; k++) {
-                    mriData.getIntensity3D(i,j,k);
-                }
-            }
+        int[] lastRememberedSlice; //todo create a method so that everytime we go up or down, we remember the last slice before we went out of bounds;
+        if (this.currentSlice < 1 || this.currentSlice > 316){
+            this.currentSlice = 1; //set this to lastRememberedSlice
+            System.out.println("Values shouldn't be less than 1 or greater than 316");
         }
-*/
-
     }
 
     @Override
     protected void paintComponent(Graphics graphics) {
         Graphics2D g = (Graphics2D) graphics;
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+        //create colour but do not instantiate it until we can set the rgb later
         Color color;
 
-        int z = currentSlice;
+        int slice = currentSlice;
 
-        for (int y = 0; y < this.mriData.getArrayOfMRI3D()[z].length; y++) {
-            for (int x = 0; x < this.mriData.getArrayOfMRI3D()[z][y].length; x++) {
-                g.setColor(new Color(this.mriData.getIntensity3D(x,y,z))); // ITS IN FUCKING BLUE WHY!?!?!??!!?
-                g.drawRect(x, y, 1, 1);
+        //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
+        for (int rows = 0; rows < this.mriData.getArrayOfMRI3D()[slice].length; rows++) {
+            for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[slice][rows].length; columns++) {
+                g.setColor(new Color(this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice))); //need to return it 3 times >> for R,G,B grayscale
+                g.drawRect(columns, rows, 1, 1);
                 g.fillRect(1,1,1,1);
             }
         }
 
     }
+
+
 
     public int getcurrentSlice(){
         return this.currentSlice;
