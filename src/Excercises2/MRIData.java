@@ -111,7 +111,7 @@ public class MRIData {
         //4. assign temp2 to columns
         //5. fill number of rows with columns
 
-        Scanner s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + fileNumber + ".csv"));
+        Scanner s = new Scanner(new File("/home/archjoe/IdeaProjects/Java/src/Excercises2/mri/mri/" + fileNumber + ".csv"));
 
 
         while(s.hasNext()){
