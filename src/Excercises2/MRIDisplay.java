@@ -13,7 +13,7 @@ public class MRIDisplay extends Plot{
 
     public MRIDisplay() throws FileNotFoundException {
         this.mriData = new MRIData();
-        this.currentSlice = 1;
+        this.currentSlice = 151;
         if (this.currentSlice < 1 || this.currentSlice > 316) {
             this.currentSlice = lastRememberedSlice;
             System.out.println("Values shouldn't be less than 1 or greater than 316");
@@ -30,7 +30,7 @@ public class MRIDisplay extends Plot{
                 int keyCode = keyEvent.getKeyCode();
 
                 if (keyCode == KeyEvent.VK_LEFT) {
-                    lastRememberedSlice = getcurrentSlice();
+                    lastRememberedSlice = currentSlice;
                     setcurrentSlice(getcurrentSlice() - 1);
                 }
 
@@ -40,7 +40,6 @@ public class MRIDisplay extends Plot{
                 }
 
                 if (keyCode == KeyEvent.VK_UP) {
-                    lastRememberedSlice = getcurrentSlice();
                     //now we should access the current slice, and flip the z for an x, so we flip which way we display the information from the 3D array
                 }
             }
@@ -65,15 +64,34 @@ public class MRIDisplay extends Plot{
         //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
         for (int rows = 0; rows < this.mriData.getArrayOfMRI3D()[slice].length; rows++) {
             for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[slice][rows].length; columns++) {
+
+                double x = this.scaleX(columns);
+                double y = this.scaleY(rows);
+
                 g.setColor(new Color(this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice))); //need to return it 3 times >> for R,G,B grayscale
-                g.drawRect(columns, rows, 1, 1);
-                g.fillRect(1,1,1,1);
+                g.fillRect(columns,rows,this.getWidth(),this.getHeight());
             }
         }
 
     }
 
+    //to display the vertical slices
+    protected void paintComponent2(Graphics graphics) {
+        Graphics2D f = (Graphics2D) graphics;
+        super.paintComponent(f);
+        Color color;
 
+        for (int columns = 0; columns < this.mriData.getArrayofMRI3Dvertical().length; columns++) {
+            for (int rows = 0; rows < this.mriData.getArrayofMRI3Dvertical()[columns].length; rows++) {
+                for (int slices = 0; slices < this.mriData.getArrayofMRI3Dvertical()[columns][rows].length; slices++) {
+
+                    f.setColor(new Color(this.mriData.getIntensity3Dvertical(columns,rows,slices)));
+                    f.fillRect(columns,rows,this.getWidth(),this.getHeight());
+                }
+            }
+        }
+
+    }
 
     public int getcurrentSlice(){
         return this.currentSlice;

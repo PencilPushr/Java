@@ -11,20 +11,7 @@ public class MRIData {
 
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
-    private int[][][] arrayOfMRI3Dvertical;
-
-/*    public static void main(String[] args) {
-
-        MRIData mri = new MRIData();
-
-        try{
-            mri.readData2D();
-            //mri.readData3D(151,152);
-        }catch (FileNotFoundException | NumberFormatException | NullPointerException e){
-            e.printStackTrace();
-        }
-
-    }*/
+    private int[][][] arrayofMRI3Dvertical;
 
     public MRIData() throws FileNotFoundException{
         readData2D();
@@ -80,15 +67,18 @@ public class MRIData {
             }
         }
 
+/*        //vertical slices
+        this.arrayofMRI3Dvertical = new int[temp3][temp2][temp1];
 
         //vertical slices
         for (int k = 0; k < array3D.size(); k++) {
             for (int j = 0; j < array3D.get(k).size(); j++) {
                 for (int i = 0; i < array3D.get(k).get(j).size(); i++) {
-                    this.arrayOfMRI3D[k][i][j] = array3D.get(k).get(i).get(j);
+                    this.arrayofMRI3Dvertical[i][j][k] = array3D.get(k).get(j).get(i);
                 }
             }
-        }
+        }*/
+
     }
 
 
@@ -148,5 +138,15 @@ public class MRIData {
 
     public int[][][] getArrayOfMRI3D() {
         return this.arrayOfMRI3D;
+    }
+
+    public int getIntensity3Dvertical(int x, int y, int z){
+
+        return this.arrayofMRI3Dvertical[x][y][z];
+    }
+
+
+    public int[][][] getArrayofMRI3Dvertical() {
+        return this.arrayofMRI3Dvertical;
     }
 }
