@@ -6,53 +6,27 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 
-public class MainMRI {
+public class MainMRI{
 
     MRIDisplay mri;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         JFrame j = new JFrame("Drawing");
 
-        KeyListener keyListener = new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent keyEvent) {
-                //j.setTitle("Key has been typed");
-            }
-
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                int keyCode = keyEvent.getKeyCode();
-
-                if (keyCode == KeyEvent.VK_LEFT){
-                    //mri.setcurrentSlice(mri.getcurrentSlice() - 1);
-                }
-
-                if (keyCode == KeyEvent.VK_RIGHT){
-                    //mri.setcurrentSlice(mri.getcurrentSlice() + 1);
-                }
-
-                if (keyCode == KeyEvent.VK_UP){
-
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-                //j.setTitle("Key has been released");
-            }
-        };
-        j.addKeyListener(keyListener);
         j.getContentPane().setPreferredSize(new Dimension(370,302)); //setting size
         j.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Java will now exit and stop the program after being closed
         j.pack(); //set window to setPreferredSize
         j.setFocusable(true);
         j.requestFocusInWindow();
         try{
-            j.add(new MRIDisplay());
+            MRIDisplay mri = new MRIDisplay();
+            j.add(mri);
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
+        System.out.println("Please use arrow keys to navigate; left or right to change slices, up to change viewpoint");
+
         j.setVisible(true);
         while(true){
             try{

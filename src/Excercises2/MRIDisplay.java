@@ -1,22 +1,57 @@
 package Excercises2;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 
 public class MRIDisplay extends Plot{
 
     private MRIData mriData;
     private int currentSlice;
+    private int lastRememberedSlice = 1;
 
     public MRIDisplay() throws FileNotFoundException {
         this.mriData = new MRIData();
-        this.currentSlice = 151;
-        int[] lastRememberedSlice; //todo create a method so that everytime we go up or down, we remember the last slice before we went out of bounds;
-        if (this.currentSlice < 1 || this.currentSlice > 316){
-            this.currentSlice = 1; //set this to lastRememberedSlice
+        this.currentSlice = 1;
+        if (this.currentSlice < 1 || this.currentSlice > 316) {
+            this.currentSlice = lastRememberedSlice;
             System.out.println("Values shouldn't be less than 1 or greater than 316");
         }
+
+        this.addKeyListener(new KeyListener() { //I am aware this should probably be in MainMRI, however I need to instantiate a new MRIdisplay each time.
+            @Override
+            public void keyTyped(KeyEvent keyEvent) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                int keyCode = keyEvent.getKeyCode();
+
+                if (keyCode == KeyEvent.VK_LEFT) {
+                    lastRememberedSlice = getcurrentSlice();
+                    setcurrentSlice(getcurrentSlice() - 1);
+                }
+
+                if (keyCode == KeyEvent.VK_RIGHT) {
+                    lastRememberedSlice = getcurrentSlice();
+                    setcurrentSlice(getcurrentSlice() + 1);
+                }
+
+                if (keyCode == KeyEvent.VK_UP) {
+                    lastRememberedSlice = getcurrentSlice();
+                    //now we should access the current slice, and flip the z for an x, so we flip which way we display the information from the 3D array
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent keyEvent) {
+
+            }
+        });
     }
+
 
     @Override
     protected void paintComponent(Graphics graphics) {
@@ -48,4 +83,11 @@ public class MRIDisplay extends Plot{
         this.currentSlice = Slice;
     }
 
+    public int getLastRememberedSlice() {
+        return lastRememberedSlice;
+    }
+
+    public void setLastRememberedSlice(int lastRememberedSlice) {
+        this.lastRememberedSlice = lastRememberedSlice;
+    }
 }
