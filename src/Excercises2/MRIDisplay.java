@@ -29,30 +29,9 @@ public class MRIDisplay extends Plot implements KeyListener{
         super.paintComponent(g);
         //create colour but do not instantiate it until we can set the rgb later
         Color color;
-        int temp = this.mriData.getArrayOfMRI3D().length-1;
         int slice = currentSlice;
 
-
-        // ------------------------------------------ VERTICAL DISPLAY SEE FIGURE 2 ----------------------------------------
-        //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
-        for (int rows = 0; rows < this.mriData.getArrayOfMRI3D().length; rows++) {
-            for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[rows].length; columns++) {
-
-                //this.setScaleX(0, this.getWidth());
-                //this.setScaleY(0, this.getHeight());
-
-                int x = this.scaleX(columns);
-                int y = this.scaleY(rows);
-
-                //as referenced in MRIDATA, by returning getIntensity 3 times we provide the greyscale values for the new colour.
-                g.setColor(new Color(this.mriData.getIntensity3D(slice,columns,temp-rows),this.mriData.getIntensity3D(slice,columns,temp-rows),this.mriData.getIntensity3D(slice,columns,temp-rows))); //need to return it 3 times >> for R,G,B grayscale
-                g.fillRect(columns,rows,this.getWidth(),this.getHeight());
-
-            }
-        }
-
-
-        // ------------------------------------------ HORIZONTAL DISPLAY SEE FIGURE 1 ----------------------------------------
+        // ------------------------------------------ HORIZONTAL DISPLAY SEE FIGURE 1 IN REASSESSMENT DOCUMENT ---------------------------------------
         //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
         for (int rows = 0; rows < this.mriData.getArrayOfMRI3D()[slice].length; rows++) {
             for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[slice][rows].length; columns++) {
@@ -66,6 +45,36 @@ public class MRIDisplay extends Plot implements KeyListener{
                 //as referenced in MRIDATA, by returning getIntensity 3 times we provide the greyscale values for the new colour.
                 g.setColor(new Color(this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice))); //need to return it 3 times >> for R,G,B grayscale
                 g.fillRect(columns,rows,this.getWidth(),this.getHeight());
+            }
+        }
+
+    }
+
+    public void paintComponent2(Graphics graphics){
+
+        Graphics2D g = (Graphics2D) graphics;
+        super.paintComponent(g);
+        Color color;
+        int temp = this.mriData.getArrayOfMRI3D().length-1; //this is so we can hold the x axis as a constant when we take it away from rows
+        int slice = currentSlice;
+
+        // ------------------------------------------ VERTICAL DISPLAY SEE FIGURE 2 IN REASSESSMENT DOCUMENT ----------------------------------------
+
+        //as in the horizontal display, we now iterate through the total number of slices first (z), and then the number rows (y) (considered as columns (x))
+        //before, the z axis was the the constant, now instead, we color is assinged in this orientation - y >> x, z >> y, x >> z
+        //as now the x axis is held constant, we go through the brain front/back (x constant) as opposed to up to down (z constant)
+
+        for (int rows = 0; rows < this.mriData.getArrayOfMRI3D().length; rows++) {
+            for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[rows].length; columns++) {
+
+
+                int x = this.scaleX(columns);
+                int y = this.scaleY(rows);
+
+                //as referenced in MRIDATA, by returning getIntensity 3 times we provide the greyscale values for the new colour.
+                g.setColor(new Color(this.mriData.getIntensity3D(slice,columns,temp-rows),this.mriData.getIntensity3D(slice,columns,temp-rows),this.mriData.getIntensity3D(slice,columns,temp-rows))); //need to return it 3 times >> for R,G,B grayscale
+                g.fillRect(columns,rows,this.getWidth(),this.getHeight());
+
             }
         }
 
@@ -92,7 +101,7 @@ public class MRIDisplay extends Plot implements KeyListener{
 
         if (keyCode == KeyEvent.VK_UP) {
             //now we should access the current slice, and flip the z for an x, so we flip which way we display the information from the 3D array
-            //AffineTransform;
+            paintComponent2(getGraphics());
         }
     }
 
@@ -116,29 +125,5 @@ public class MRIDisplay extends Plot implements KeyListener{
     public void setLastRememberedSlice(int lastRememberedSlice) {
         this.lastRememberedSlice = lastRememberedSlice;
     }
-
-    /*Graphics2D g = (Graphics2D) graphics;
-        super.paintComponent(g);
-    //create colour but do not instantiate it until we can set the rgb later
-    Color color;
-
-    int slice = currentSlice;
-
-    //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
-        for (int rows = 0; rows < this.mriData.getArrayOfMRI3D()[slice].length; rows++) {
-        for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[slice][rows].length; columns++) {
-
-            //this.setScaleX(0, this.getWidth());
-            //this.setScaleY(0, this.getHeight());
-
-            int x = this.scaleX(columns);
-            int y = this.scaleY(rows);
-
-            //as referenced in MRIDATA, by returning getIntensity 3 times we provide the greyscale values for the new colour.
-            g.setColor(new Color(this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice))); //need to return it 3 times >> for R,G,B grayscale
-            g.fillRect(columns,rows,this.getWidth(),this.getHeight());
-        }
-    }
-*/
 
 }

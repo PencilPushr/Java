@@ -11,7 +11,6 @@ public class MRIData {
 
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
-    private int[][][] arrayofMRI3Dvertical;
 
 
     public MRIData() throws FileNotFoundException{
@@ -21,8 +20,7 @@ public class MRIData {
 
     public void readData3D(int file1, int file2) throws FileNotFoundException, NullPointerException {
 
-        //Using the class TwoDimentionalArrayList, it would be possible to make this code more efficient but for now
-        // this code shall suffice
+        //Using the class TwoDimentionalArrayList, it would be possible to make this code more efficient but for now this code shall suffice
         //TODO: come back and implement the usage of TWODimentionalArrayList
 
         ArrayList<ArrayList<ArrayList<Integer>>> array3D = new ArrayList<ArrayList<ArrayList<Integer>>>();
@@ -67,18 +65,6 @@ public class MRIData {
                 }
             }
         }
-
-/*        //vertical slices
-        this.arrayofMRI3Dvertical = new int[temp3][temp2][temp1];
-
-        //vertical slices
-        for (int k = 0; k < array3D.size(); k++) {
-            for (int j = 0; j < array3D.get(k).size(); j++) {
-                for (int i = 0; i < array3D.get(k).get(j).size(); i++) {
-                    this.arrayofMRI3Dvertical[i][j][k] = array3D.get(k).get(j).get(i);
-                }
-            }
-        }*/
 
     }
 
@@ -139,15 +125,5 @@ public class MRIData {
 
     public int[][][] getArrayOfMRI3D() {
         return this.arrayOfMRI3D;
-    }
-
-    public int getIntensity3Dvertical(int x, int y, int z){
-
-        return this.arrayofMRI3Dvertical[x][y][z];
-    }
-
-
-    public int[][][] getArrayofMRI3Dvertical() {
-        return this.arrayofMRI3Dvertical;
     }
 }

@@ -27,6 +27,7 @@ public class MainMRI{
             e.printStackTrace();
         }
         j.setVisible(true);
+
         System.out.println("Please use arrow keys to navigate; left or right to change slices, up to change viewpoint");
 
         while(true){
