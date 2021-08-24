@@ -11,7 +11,7 @@ public class MRIData {
 
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
-
+    private int fileNumber = 1;
 
     public MRIData() throws FileNotFoundException{
         readData2D();
@@ -71,15 +71,13 @@ public class MRIData {
 
     public void readData2D() throws FileNotFoundException {
 
-        int fileNumber = 151;
-
         ArrayList<ArrayList<Integer>> array2D = new ArrayList<ArrayList<Integer>>();
         String[] string = null;
         ArrayList<Integer> temp;
         int temp1 = 0;
         int temp2 = 0;
 
-        Scanner s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + fileNumber + ".csv"));
+        Scanner s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + this.fileNumber + ".csv"));
 
 
         while(s.hasNext()){
@@ -105,7 +103,7 @@ public class MRIData {
 
     }
 
-    //Concerning both gets -> pure white is 255,255,255 for R,G,B
+    //Concerning both getIntensity's -> pure white is 255,255,255 for R,G,B
     //Therefore to simply convert this into greyscale, by returning the values three times would provide the grey scale factor we need
     //For example -> file 163 coords is 98 (this is made up) in gI3D -> by returning this three times for each stream we get 98,98,98
 
@@ -125,5 +123,13 @@ public class MRIData {
 
     public int[][][] getArrayOfMRI3D() {
         return this.arrayOfMRI3D;
+    }
+
+    public int getFileNumber() {
+        return fileNumber;
+    }
+
+    public void setFileNumber(int fileNumber) {
+        this.fileNumber = fileNumber;
     }
 }
