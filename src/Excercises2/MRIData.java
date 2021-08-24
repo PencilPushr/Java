@@ -13,6 +13,7 @@ public class MRIData {
     private int[][][] arrayOfMRI3D;
     private int[][][] arrayofMRI3Dvertical;
 
+
     public MRIData() throws FileNotFoundException{
         readData2D();
         readData3D(1, 316);

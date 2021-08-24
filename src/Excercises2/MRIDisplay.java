@@ -3,52 +3,23 @@ package Excercises2;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.AffineTransform;
 import java.io.FileNotFoundException;
 
-public class MRIDisplay extends Plot{
+public class MRIDisplay extends Plot implements KeyListener{
 
     private MRIData mriData;
     private int currentSlice;
-    private int lastRememberedSlice = 1;
+    private int lastRememberedSlice = 1; //TODO: make this an array, so we can iterate backwards if we cannot display the current slice
 
     public MRIDisplay() throws FileNotFoundException {
         this.mriData = new MRIData();
+        this.addKeyListener(this);
         this.currentSlice = 151;
         if (this.currentSlice < 1 || this.currentSlice > 316) {
             this.currentSlice = lastRememberedSlice;
             System.out.println("Values shouldn't be less than 1 or greater than 316");
         }
-
-        this.addKeyListener(new KeyListener() { //I am aware this should probably be in MainMRI, however I need to instantiate a new MRIdisplay each time.
-            @Override
-            public void keyTyped(KeyEvent keyEvent) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                int keyCode = keyEvent.getKeyCode();
-
-                if (keyCode == KeyEvent.VK_LEFT) {
-                    lastRememberedSlice = currentSlice;
-                    setcurrentSlice(getcurrentSlice() - 1);
-                }
-
-                if (keyCode == KeyEvent.VK_RIGHT) {
-                    lastRememberedSlice = getcurrentSlice();
-                    setcurrentSlice(getcurrentSlice() + 1);
-                }
-
-                if (keyCode == KeyEvent.VK_UP) {
-                    //now we should access the current slice, and flip the z for an x, so we flip which way we display the information from the 3D array
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-
-            }
-        });
     }
 
 
@@ -58,16 +29,41 @@ public class MRIDisplay extends Plot{
         super.paintComponent(g);
         //create colour but do not instantiate it until we can set the rgb later
         Color color;
-
+        int temp = this.mriData.getArrayOfMRI3D().length-1;
         int slice = currentSlice;
 
+
+        // ------------------------------------------ VERTICAL DISPLAY SEE FIGURE 2 ----------------------------------------
+        //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
+        for (int rows = 0; rows < this.mriData.getArrayOfMRI3D().length; rows++) {
+            for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[rows].length; columns++) {
+
+                //this.setScaleX(0, this.getWidth());
+                //this.setScaleY(0, this.getHeight());
+
+                int x = this.scaleX(columns);
+                int y = this.scaleY(rows);
+
+                //as referenced in MRIDATA, by returning getIntensity 3 times we provide the greyscale values for the new colour.
+                g.setColor(new Color(this.mriData.getIntensity3D(slice,columns,temp-rows),this.mriData.getIntensity3D(slice,columns,temp-rows),this.mriData.getIntensity3D(slice,columns,temp-rows))); //need to return it 3 times >> for R,G,B grayscale
+                g.fillRect(columns,rows,this.getWidth(),this.getHeight());
+
+            }
+        }
+
+
+        // ------------------------------------------ HORIZONTAL DISPLAY SEE FIGURE 1 ----------------------------------------
         //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
         for (int rows = 0; rows < this.mriData.getArrayOfMRI3D()[slice].length; rows++) {
             for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[slice][rows].length; columns++) {
 
-                double x = this.scaleX(columns);
-                double y = this.scaleY(rows);
+                //this.setScaleX(0, this.getWidth());
+                //this.setScaleY(0, this.getHeight());
 
+                int x = this.scaleX(columns);
+                int y = this.scaleY(rows);
+
+                //as referenced in MRIDATA, by returning getIntensity 3 times we provide the greyscale values for the new colour.
                 g.setColor(new Color(this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice))); //need to return it 3 times >> for R,G,B grayscale
                 g.fillRect(columns,rows,this.getWidth(),this.getHeight());
             }
@@ -75,21 +71,33 @@ public class MRIDisplay extends Plot{
 
     }
 
-    //to display the vertical slices
-    protected void paintComponent2(Graphics graphics) {
-        Graphics2D f = (Graphics2D) graphics;
-        super.paintComponent(f);
-        Color color;
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
 
-        for (int columns = 0; columns < this.mriData.getArrayofMRI3Dvertical().length; columns++) {
-            for (int rows = 0; rows < this.mriData.getArrayofMRI3Dvertical()[columns].length; rows++) {
-                for (int slices = 0; slices < this.mriData.getArrayofMRI3Dvertical()[columns][rows].length; slices++) {
+    }
 
-                    f.setColor(new Color(this.mriData.getIntensity3Dvertical(columns,rows,slices)));
-                    f.fillRect(columns,rows,this.getWidth(),this.getHeight());
-                }
-            }
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+        int keyCode = keyEvent.getKeyCode();
+
+        if (keyCode == KeyEvent.VK_LEFT) {
+            lastRememberedSlice = currentSlice;
+            this.currentSlice = (getcurrentSlice() - 1);
         }
+
+        if (keyCode == KeyEvent.VK_RIGHT) {
+            lastRememberedSlice = currentSlice;
+            setcurrentSlice(getcurrentSlice() + 1);
+        }
+
+        if (keyCode == KeyEvent.VK_UP) {
+            //now we should access the current slice, and flip the z for an x, so we flip which way we display the information from the 3D array
+            //AffineTransform;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
 
     }
 
@@ -108,4 +116,29 @@ public class MRIDisplay extends Plot{
     public void setLastRememberedSlice(int lastRememberedSlice) {
         this.lastRememberedSlice = lastRememberedSlice;
     }
+
+    /*Graphics2D g = (Graphics2D) graphics;
+        super.paintComponent(g);
+    //create colour but do not instantiate it until we can set the rgb later
+    Color color;
+
+    int slice = currentSlice;
+
+    //iterating through the 3d array, and setting a new RGB color and creating small rectangles that we can stretch to fit the current size of the jFrame
+        for (int rows = 0; rows < this.mriData.getArrayOfMRI3D()[slice].length; rows++) {
+        for (int columns = 0; columns < this.mriData.getArrayOfMRI3D()[slice][rows].length; columns++) {
+
+            //this.setScaleX(0, this.getWidth());
+            //this.setScaleY(0, this.getHeight());
+
+            int x = this.scaleX(columns);
+            int y = this.scaleY(rows);
+
+            //as referenced in MRIDATA, by returning getIntensity 3 times we provide the greyscale values for the new colour.
+            g.setColor(new Color(this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice),this.mriData.getIntensity3D(columns,rows,slice))); //need to return it 3 times >> for R,G,B grayscale
+            g.fillRect(columns,rows,this.getWidth(),this.getHeight());
+        }
+    }
+*/
+
 }

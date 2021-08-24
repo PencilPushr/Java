@@ -19,15 +19,16 @@ public class MainMRI{
         j.pack(); //set window to setPreferredSize
         j.setFocusable(true);
         j.requestFocusInWindow();
+
         try{
             MRIDisplay mri = new MRIDisplay();
             j.add(mri);
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
+        j.setVisible(true);
         System.out.println("Please use arrow keys to navigate; left or right to change slices, up to change viewpoint");
 
-        j.setVisible(true);
         while(true){
             try{
                 Thread.sleep(100);
