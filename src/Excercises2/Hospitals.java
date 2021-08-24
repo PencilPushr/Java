@@ -9,10 +9,6 @@ public class Hospitals {
 
     public Hospitals(int noOfHosp, int noOfBeds) {
 
-        //this.beds = beds;
-        //this.percentages = percentages;
-        //Java didn't like me doing this
-
         //sanity check, can't have 0 of either.
         if (noOfHosp < 1 || noOfBeds < 1){
             noOfBeds = 1;
@@ -36,7 +32,7 @@ public class Hospitals {
         int hospitals = this.beds[0].length; //only need to assign it once
 
         for (int i = 0; i < this.beds.length; i++) {
-            for (int j = 0; j < hospitals; j++) { // unsure if I should just assign -> (j < i) or (j < this.beds[i].length)?
+            for (int j = 0; j < hospitals; j++) {
                 this.beds[i][j] = random.nextBoolean();
             }
         }

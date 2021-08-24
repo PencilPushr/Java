@@ -23,7 +23,6 @@ public class MainPatientDB {
 */
 
     public static void main(String[] args){
-        //MainPatientDB mainp = new MainPatientDB();
 
         String[] menuItems = new String[]{"1", "2", "3", "quit"};
         String menuInput;
@@ -46,8 +45,8 @@ public class MainPatientDB {
                 while(!stop){
                     menuOptions();
                     menuInput = p.nextLine();
-                    String temp = whatIsInput(menuItems, menuInput); //if this breaks, initialise new String "temp" outside and assign then it.
-                    if (temp != null && !temp.isEmpty()){ // this took me so long to realise I could do this -> basically if its null just immediately jump to invalid entry, don't bother checking it
+                    String temp = whatIsInput(menuItems, menuInput); //calls the function to check against the menuItems array
+                    if (temp != null && !temp.isEmpty()){ //if its null just immediately jump to invalid entry, don't bother checking it
                         //could have done a SWITCH, but I felt like the code would break some how, some where and in some way.
                         if (temp.equals("1")){
                             pat.sortDB();
@@ -57,7 +56,7 @@ public class MainPatientDB {
                         }
                         if (temp.equals("3")){
                             System.out.println(pat.generatePatientSample()); // cba with creating new method to print it.
-                            //if need be I could provide on how to, just in case i get marked down vvvvvvvv (see below)
+                            //if need be I could provide on how to -> just in case i get marked down (see below)
                             //example: using generatePS() simply iterate through the map and print them one by one.
                         }
                         if (temp.equals("quit")){
