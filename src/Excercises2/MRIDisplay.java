@@ -11,6 +11,7 @@ public class MRIDisplay extends Plot implements KeyListener{
     private MRIData mriData;
     private int currentSlice;
     private int lastRememberedSlice = 1; //TODO: make this an array, so we can iterate backwards if we cannot display the current slice
+    private boolean upKey = false;
 
     public MRIDisplay() throws FileNotFoundException {
         this.mriData = new MRIData();
@@ -101,7 +102,14 @@ public class MRIDisplay extends Plot implements KeyListener{
 
         if (keyCode == KeyEvent.VK_UP) {
             //now we should access the current slice, and flip the z for an x, so we flip which way we display the information from the 3D array
-            paintComponent2(getGraphics());
+            if (upKey == false){
+                upKey = true;
+                paintComponent2(getGraphics());
+            }
+            if (upKey = true){
+                upKey = false;
+                paintComponent(getGraphics());
+            }
         }
     }
 
