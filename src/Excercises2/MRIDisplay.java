@@ -33,7 +33,7 @@ public class MRIDisplay extends Plot implements KeyListener{
         Color color;
 
         if (this.upKey = true){
-            HorizontalDisplay(g);
+            VerticalDisplay(g);
         }else if (!this.upKey){
             HorizontalDisplay(g);
         }
@@ -123,34 +123,34 @@ public class MRIDisplay extends Plot implements KeyListener{
 
         if (keyCode == KeyEvent.VK_LEFT) {
             this.lastRememberedSlice = this.currentSlice;
-            this.currentSlice -= 1;
+            this.currentSlice -= 1;//3D display
+            mriData.setFileNumber(this.currentSlice);//2D display
         }
 
         if (keyCode == KeyEvent.VK_RIGHT) {
             this.lastRememberedSlice = this.currentSlice;
-            this.currentSlice += 1;
+            this.currentSlice += 1; //3D display
+            mriData.setFileNumber(this.currentSlice); //2D display
         }
 
         if (keyCode == KeyEvent.VK_UP) {
-            if (!upKey){
-                upKey = true;
+            if (!this.upKey){
+                this.upKey = true;
                 //VerticalDisplay(); << executes this code
             }
-            if (upKey = true){
-                upKey = false;
+            if (this.upKey = true){
+                this.upKey = false;
                 //HorizontalDisplay();
             }
         }
 
         if (keyCode == KeyEvent.VK_DOWN) {
-            if (!downKey){
-                downKey = true;
-                //this.mriData.setFileNumber(this.lastRememberedSlice);
-                //technically you can still switch slices, however don't have the time to create a better implementation
+            if (!this.downKey){
+                this.downKey = true;
                 //paint2D(getGraphics());
             }
-            if (downKey = true){
-                downKey = false;
+            if (this.downKey = true){
+                this.downKey = false;
                 //go back to 3d display
             }
         }

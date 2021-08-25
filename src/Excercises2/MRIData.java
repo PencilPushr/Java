@@ -11,7 +11,7 @@ public class MRIData {
 
     private int[][] arrayOfMRI2D;
     private int[][][] arrayOfMRI3D;
-    private int fileNumber = 1;
+    private int fileNumber = 151;
 
     public MRIData() throws FileNotFoundException{
         readData2D();
