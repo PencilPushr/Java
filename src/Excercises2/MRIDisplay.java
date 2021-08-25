@@ -31,6 +31,21 @@ public class MRIDisplay extends Plot implements KeyListener{
         Graphics2D g = (Graphics2D) graphics;
         super.paintComponent(g);
         Color color;
+
+        if (this.upKey = true){
+            HorizontalDisplay(g);
+        }else if (!this.upKey){
+            HorizontalDisplay(g);
+        }
+
+        if (this.downKey = true){
+            paint2D(g);
+        }else if (this.downKey = false){
+            HorizontalDisplay(g);
+        }
+    }
+
+    protected void HorizontalDisplay(Graphics g){
         int slice = currentSlice;
 
         // ------------------------------------------ HORIZONTAL DISPLAY SEE FIGURE 1 IN REASSESSMENT DOCUMENT ---------------------------------------
@@ -50,14 +65,11 @@ public class MRIDisplay extends Plot implements KeyListener{
                 g.fillRect(columns,rows,this.getWidth(),this.getHeight());
             }
         }
-
     }
 
     //Vertical display of brain data
-    public void paintComponentVertical(Graphics graphics){
+    public void VerticalDisplay(Graphics g){
 
-        Graphics2D g = (Graphics2D) graphics;
-        super.paintComponent(g);
         Color color;
         int temp = this.mriData.getArrayOfMRI3D().length-1; //this is so we can hold the x axis as a constant when we take it away from rows
         int slice = currentSlice;
@@ -88,10 +100,8 @@ public class MRIDisplay extends Plot implements KeyListener{
     }
 
     //using the 2D instead of 3D so we can switch between as specified
-    public void paintComponent2D(Graphics graphics){
+    public void paint2D(Graphics g){
 
-        Graphics2D g = (Graphics2D) graphics;
-        super.paintComponent(g);
         Color color;
 
         for (int y = 0; y < this.mriData.getArrayOfMRI2D().length; y++) {
@@ -124,11 +134,11 @@ public class MRIDisplay extends Plot implements KeyListener{
         if (keyCode == KeyEvent.VK_UP) {
             if (!upKey){
                 upKey = true;
-                paintComponentVertical(getGraphics());
+                //VerticalDisplay(); << executes this code
             }
             if (upKey = true){
                 upKey = false;
-                paintComponent(getGraphics());
+                //HorizontalDisplay();
             }
         }
 
@@ -137,11 +147,11 @@ public class MRIDisplay extends Plot implements KeyListener{
                 downKey = true;
                 //this.mriData.setFileNumber(this.lastRememberedSlice);
                 //technically you can still switch slices, however don't have the time to create a better implementation
-                paintComponent2D(getGraphics());
+                //paint2D(getGraphics());
             }
             if (downKey = true){
                 downKey = false;
-                paintComponent(getGraphics());
+                //go back to 3d display
             }
         }
     }
