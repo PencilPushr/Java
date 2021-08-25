@@ -34,13 +34,14 @@ public class MRIDisplay extends Plot implements KeyListener{
 
         if (this.upKey = true){
             VerticalDisplay(g);
-        }else if (!this.upKey){
+        }
+        if (!this.upKey){
             HorizontalDisplay(g);
         }
-
         if (this.downKey = true){
             paint2D(g);
-        }else if (this.downKey = false){
+        }
+        if (this.downKey = false){
             HorizontalDisplay(g);
         }
     }
