@@ -15,6 +15,8 @@ public class MainLobe extends JFrame{
         setVisible(true);
     }
 
+    //look into making the appearance of the squares, then set it to a button.
+
     public static void main(String[] args) {
         new MainLobe();
     }

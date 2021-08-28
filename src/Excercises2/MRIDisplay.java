@@ -32,18 +32,14 @@ public class MRIDisplay extends Plot implements KeyListener{
         super.paintComponent(g);
         Color color;
 
-        if (this.upKey = true){
+        if (this.downKey){
+            paint2D(g); //Locks current image in place if downkey is true
+        } else if (this.upKey){
+            HorizontalDisplay(g);
+        } else {
             VerticalDisplay(g);
         }
-        if (!this.upKey){
-            HorizontalDisplay(g);
-        }
-        if (this.downKey = true){
-            paint2D(g);
-        }
-        if (this.downKey = false){
-            HorizontalDisplay(g);
-        }
+
     }
 
     protected void HorizontalDisplay(Graphics g){
@@ -115,7 +111,7 @@ public class MRIDisplay extends Plot implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent keyEvent) {
-
+        //dont expect this to get triggered
     }
 
     @Override
@@ -135,24 +131,15 @@ public class MRIDisplay extends Plot implements KeyListener{
         }
 
         if (keyCode == KeyEvent.VK_UP) {
-            if (!this.upKey){
-                this.upKey = true;
-                //VerticalDisplay(); << executes this code
-            }
-            if (this.upKey = true){
-                this.upKey = false;
-                //HorizontalDisplay();
-            }
+            this.upKey = !this.upKey;
         }
 
         if (keyCode == KeyEvent.VK_DOWN) {
-            if (!this.downKey){
-                this.downKey = true;
-                //paint2D(getGraphics());
-            }
-            if (this.downKey = true){
-                this.downKey = false;
-                //go back to 3d display
+            this.downKey = !this.downKey;
+            if (this.downKey){
+                System.out.println("Slice is locked");
+            } else {
+                System.out.println("Slice is unlocked");
             }
         }
     }

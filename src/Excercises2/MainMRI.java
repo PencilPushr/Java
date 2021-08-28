@@ -17,6 +17,7 @@ public class MainMRI{
 
         try{
             MRIDisplay mri = new MRIDisplay();
+            j.addKeyListener(mri);
             j.add(mri);
         } catch (FileNotFoundException e){
             System.out.println("File not found!");
