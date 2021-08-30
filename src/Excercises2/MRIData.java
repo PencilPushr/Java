@@ -30,13 +30,14 @@ public class MRIData {
         int temp1 = 0;
         int temp2 = 0;
         int temp3 = 0;
+        String directory = System.getProperty("user.dir");
 
         Scanner s = null;
 
 
         for (int i = file1; i <= file2; i++)
          {
-            s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + i +".csv"));
+            s = new Scanner(new File(directory + "/src/Excercises2/mri/mri/" + i +".csv"));
 
             array2D = new ArrayList<ArrayList<Integer>>();
 
@@ -76,9 +77,9 @@ public class MRIData {
         ArrayList<Integer> temp;
         int temp1 = 0;
         int temp2 = 0;
+        String directory = System.getProperty("user.dir");
 
-        Scanner s = new Scanner(new File("/home/alex/Java/src/Excercises2/mri/mri/" + this.fileNumber + ".csv"));
-
+        Scanner s = new Scanner(new File(directory + "/src/Excercises2/mri/mri/" + this.fileNumber + ".csv"));
 
         while(s.hasNext()){
             string = s.nextLine().split(",");
