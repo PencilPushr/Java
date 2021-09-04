@@ -13,7 +13,7 @@ public class p5 {
     public boolean divisor(int x){
         int y = x;
 
-        //should look at GCD algorithm as referenced from a StackExchange post.
+        //should look at GCD algorithm as referenced from a StackExchange post
         for (int i = 11; i < 20; i++) { //i can also start at 2
             int temp = y;
             if ((temp = temp % i) != 0){
