@@ -14,7 +14,6 @@ public class p7 {
         int primeCounter = 2;
         int number = 3;
 
-        //less than 10,001
         while(primeCounter < 10001){
             number += 2;
             if (isPrime(number)){
