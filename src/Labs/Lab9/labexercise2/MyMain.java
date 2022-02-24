@@ -6,17 +6,16 @@ import java.io.FileNotFoundException;
 public class MyMain {
 
     public static void main(String[] args) {
-        Letter2DIO l2dio = new Letter2DIO();
+        //Letter2DIO l2dio = new Letter2DIO();
         try{
-            l2dio.writeRandomLetters("test", 10);
-            l2dio.readLetters("test",10);
+            Letter2DIO.writeRandomLetters("test", 10);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         JFrame f = new JFrame("Letter2D Display");
         f.setSize(500,500);
         try{
-            f.add(new Letter2DDisplay(Letter2DIO.readLetters("test", 100)));
+            f.add(new Letter2DDisplay(Letter2DIO.readLetters("test", 10)));
         } catch (FileNotFoundException g){
             g.printStackTrace();
         }

@@ -49,7 +49,7 @@ public class Letter2DIO {
     public static Letter2D[] readLetters(String filename, int noOfLines) throws FileNotFoundException {
         Scanner s = new Scanner(new File(filename + ".csv"));
         Letter2D[] l2d = new Letter2D[noOfLines * 3]; //[noOflines*3] will give us the x,y and c values needed for the size of the array
-        Arrays.fill(l2d, 0);
+        Letter2D temp;
 
         int tempX;
         int tempY;
@@ -62,9 +62,11 @@ public class Letter2DIO {
             tempC = line.charAt(0);
             tempX = Integer.parseInt(line.split(",")[1]);
             tempY = Integer.parseInt(line.split(",")[2]);
-            l2d[i].setC((char) tempC);
-            l2d[i+1].setX(tempX);
-            l2d[i+2].setY(tempY);
+            temp = new Letter2D(tempX, tempY, tempC);
+            l2d[i] = temp;
+            //l2d[i].setC((char) tempC);
+            //l2d[i].setX(tempX);
+            //l2d[i].setY(tempY);
         }
         return l2d;
     }
