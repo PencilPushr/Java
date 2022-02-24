@@ -14,5 +14,12 @@ public class Letter2DDisplay extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Color color;
+
+        for (int i = 0; i < letterArray.length; i++) {
+            g.setColor(Color.black);
+            g.drawString(this.letterArray[i].getC(), this.letterArray[i].getX(), this.letterArray[i].getY());
+
+        }
     }
 }

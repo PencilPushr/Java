@@ -1,8 +1,10 @@
 package Labs.Lab9.labexercise2;
 
 import java.awt.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,7 +15,9 @@ public class Letter2DIO {
 
 
     public static void writeRandomLetters(String filename, int noObjects) throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter("~/" + filename + ".csv");
+        //PrintWriter pw = new PrintWriter("~/" + filename + ".csv");
+        ///home/averagejoe/IdeaProjects/Java/src/Labs/Lab9/labexercise2/
+        PrintWriter pw = new PrintWriter("test.csv");
         StringBuilder sb = new StringBuilder();
 
         //List<String[]> items = new List<String[]>;
@@ -42,23 +46,25 @@ public class Letter2DIO {
         pw.close();
     }
 
-    public static Letter2D[] readLetters(String filename, int noOfLines) {
-        Scanner s = new Scanner(filename);
+    public static Letter2D[] readLetters(String filename, int noOfLines) throws FileNotFoundException {
+        Scanner s = new Scanner(new File(filename + ".csv"));
         Letter2D[] l2d = new Letter2D[noOfLines * 3]; //[noOflines*3] will give us the x,y and c values needed for the size of the array
+        Arrays.fill(l2d, 0);
 
         int tempX;
         int tempY;
-        int tempC;
+        char tempC; //we will cast this later to char
 
 
         for (int i = 0; i < noOfLines; i++) {
             if (!s.hasNext()) break; //sanity check that we aren't trying to read an empty file
-            String[] line = s.nextLine().split(",");
-            tempX = Integer.parseInt(line[0]);
-            tempY = Integer.parseInt(line[1]);
-            tempC = Integer.parseInt(line[2]);
-            l2d[i] = (Letter2D) tempX;
-            l2d
+            String line = s.nextLine();
+            tempC = line.charAt(0);
+            tempX = Integer.parseInt(line.split(",")[1]);
+            tempY = Integer.parseInt(line.split(",")[2]);
+            l2d[i].setC((char) tempC);
+            l2d[i+1].setX(tempX);
+            l2d[i+2].setY(tempY);
         }
         return l2d;
     }

@@ -15,7 +15,11 @@ public class MyMain {
         }
         JFrame f = new JFrame("Letter2D Display");
         f.setSize(500,500);
-        f.add(new Letter2DDisplay(Letter2DIO.readLetters("test", 100)));
+        try{
+            f.add(new Letter2DDisplay(Letter2DIO.readLetters("test", 100)));
+        } catch (FileNotFoundException g){
+            g.printStackTrace();
+        }
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
