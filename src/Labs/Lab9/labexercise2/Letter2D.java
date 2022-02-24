@@ -13,11 +13,9 @@ public class Letter2D {
 
     @Override
     public String toString() {
-        return "{" +
-                "c= " + c +
-                ", x= " + x +
-                ", y= " + y +
-                '}';
+        return c +
+                "," + x +
+                "," + y;
     }
 
     public int getX() {

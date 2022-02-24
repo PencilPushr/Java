@@ -1,5 +1,6 @@
 package Labs.Lab9.labexercise2;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Random;
@@ -12,33 +13,54 @@ public class Letter2DIO {
 
 
     public static void writeRandomLetters(String filename, int noObjects) throws FileNotFoundException {
-        //PrintStream output = new PrintStream(filename);
-        PrintWriter pw = new PrintWriter(filename + ".csv");
+        PrintWriter pw = new PrintWriter("~/" + filename + ".csv");
         StringBuilder sb = new StringBuilder();
+
         //List<String[]> items = new List<String[]>;
-        //String[] temp
-        //alternatively using temp I can append them to items and then once I have all the arrays of objects
-        //put them in items and then push them into the file.
+        //String[] temp;
+
+        //Call temp in loop -> append them to items each iteration
+        //after loop is finished should have filled out list of string arrays
+        //Push items into the file using .writeAll()
 
         for (int i = 0; i < noObjects; i++) {
+            //temp = new String[6]
+            sb.append(generateRndChar());
+            sb.append(",");
             sb.append(generateRndIntX());
             sb.append(",");
             sb.append(generateRndIntY());
-            sb.append(",");
-            sb.append(generateRndChar());
             sb.append("\n");
             pw.write(sb.toString());
+            sb.setLength(0); //clears the string, faster approach than just allocating "new StringBuilder";
+            //items.add(temp);
         }
+
+        //pw.write(items.toString());
+
         //output.close();
         pw.close();
     }
 
-    public static Letter2D[] readLetters(String filename, int noOfLines){
+    public static Letter2D[] readLetters(String filename, int noOfLines) {
         Scanner s = new Scanner(filename);
-        for (int i = 0; i < noOfLines; i++) {
+        Letter2D[] l2d = new Letter2D[noOfLines * 3]; //[noOflines*3] will give us the x,y and c values needed for the size of the array
 
+        int tempX;
+        int tempY;
+        int tempC;
+
+
+        for (int i = 0; i < noOfLines; i++) {
+            if (!s.hasNext()) break; //sanity check that we aren't trying to read an empty file
+            String[] line = s.nextLine().split(",");
+            tempX = Integer.parseInt(line[0]);
+            tempY = Integer.parseInt(line[1]);
+            tempC = Integer.parseInt(line[2]);
+            l2d[i] = (Letter2D) tempX;
+            l2d
         }
-        return new Letter2D[0];
+        return l2d;
     }
 
     private static char generateRndChar(){
