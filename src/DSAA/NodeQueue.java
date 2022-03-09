@@ -5,7 +5,7 @@ class NodeQueue<T> implements Queue {
         this.root = null;
     }
 
-    class Node<T> {
+    public class Node<T> {
         public T content;
         public Node<T> next;
 

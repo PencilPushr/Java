@@ -18,7 +18,7 @@ public class Letter2DDisplay extends JComponent {
 
         for (int i = 0; i < letterArray.length; i++) {
             g.setColor(Color.black);
-            //g.drawString(this.letterArray[i].getC(), this.letterArray[i].getX(), this.letterArray[i].getY());
+            g.drawString(String.valueOf(this.letterArray[i].getC()), this.letterArray[i].getX(), this.letterArray[i].getY());
 
         }
     }

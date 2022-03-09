@@ -23,4 +23,10 @@ public class MyMain {
         f.setVisible(true);
     }
 
+    /*
+    Integer[] accounts = new Integer[4];
+account[0] = new Integer(1234);
+account[1] = new Integer(5678);
+     */
+
 }
