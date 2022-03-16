@@ -1,16 +1,15 @@
 package Labs.Lab9.labexercise3;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MyInputInfo implements Comparable{ //is meant to hold only one key press, Hashmap will hold multiple of these
 
     private boolean boolInt;
-    private String content;
+    private String content; //can act as both an int, or a string/char
     private Pattern pattern;
 
-    MyInputInfo(String input){
-        this.pattern = Pattern.compile("[0-9]+(\\.[0-9]+)?");
+    MyInputInfo(String input){ //we know input has to be a string
+        this.pattern = Pattern.compile("[0-9]+(\\.[0-9]+)?"); //regex101.com
         // REGEX: "[0-9]+(\.[0-9]+)?"
         // [0-9] regex for numbers 0-9 (alt: \d for digits)
         // + implies one or more cases of [0-9]
@@ -18,14 +17,16 @@ public class MyInputInfo implements Comparable{ //is meant to hold only one key 
         // \. is a decimal
         // this will match any integer and potential double we encounter
 
+        //the double slash is needed because java has \ as an escape character, we need to escape the escape char
+
         if (input.equals("")){ //check there are no empty inputs
             System.out.print("No Empty inputs.");
             System.exit(1);
         } else if (regexIntDoubleCheck(input)){ //check if it's an integer or a double
-            boolInt = true;
-        } else {
-            input = input.substring(0, 1);
-            content = input;
+            this.boolInt = true;
+            this.content = input;
+        } else { //must be a char/string
+            this.content = input.substring(0, 1);
         }
 
     }
@@ -33,7 +34,7 @@ public class MyInputInfo implements Comparable{ //is meant to hold only one key 
     @Override
     public int compareTo(Object o) {
         // First case, they are the same.
-        if (!this.toString().equals(o.toString())) return 0;
+        if (this.toString().equals(o.toString())) return 0;
 
         //they must not be the same if it made it this far
         int result = this.toString().compareTo(o.toString()); //on the JAVA ASCII table, ints appear before upper and lower case alphabet symbols
@@ -44,10 +45,10 @@ public class MyInputInfo implements Comparable{ //is meant to hold only one key 
         int lmin = Math.min(l1, l2);
 
         for (int i = 0; i < lmin; i++) {
-            int str1_ch = (int)str1.charAt(i);
+            int str1_ch = (int)str1.charAt(i); //corresponding ascii char (why str1_ch is an int)
             int str2_ch = (int)str2.charAt(i);
 
-            if (str1_ch != str2_ch) {
+            if (str1_ch != str2_ch) {   //check if the char at index i is the same.
                 return str1_ch - str2_ch;
             }
         }
@@ -63,9 +64,7 @@ public class MyInputInfo implements Comparable{ //is meant to hold only one key 
 
          */
 
-        //check object is an int?
-        //if (isInt(o.toString())){
-        //}
+        if (this.toString().equals(o.toString())) return 0;
 
         //if a1 > a2, it returns negative number
         //if a1 < a2, it returns positive number
@@ -83,16 +82,29 @@ public class MyInputInfo implements Comparable{ //is meant to hold only one key 
         return "Symbol" + this.content; //else must be a char
     }
 
-    public boolean getIsNumber(){
-        return this.boolInt;
+    //most efficient solution
+    private boolean regexIntDoubleCheck(String s){
+        return this.pattern.matcher(s).find();
     }
 
-    /* Code block is obsolete because of regexIntDoubleCheck()
+    public String getContent() {
+        return content;
+    }
 
+    public boolean isBoolInt() {
+        return boolInt;
+    }
+
+
+
+
+    //Code block is obsolete because of regexIntDoubleCheck()
+
+    /*
     private boolean isDouble(String s){
         try {
             Double.parseDouble(s);
-            boolDouble = true;
+            //boolDouble = true;
             boolInt = false;
             return true;
         } catch (NumberFormatException nfe){
@@ -100,13 +112,11 @@ public class MyInputInfo implements Comparable{ //is meant to hold only one key 
         }
     }
 
-     */
-
     private boolean isInt(String s)
     {
         try {
             Integer.parseInt(s);
-            boolInt = true;
+            this.boolInt = true;
             //boolDouble = false;
             return true;
         } catch (NumberFormatException nfe) {
@@ -126,11 +136,8 @@ public class MyInputInfo implements Comparable{ //is meant to hold only one key 
         }
         //don't need to return anything else, we will return an empty string if its not a number
         return strBuilder.toString();
-    }
 
-    //most efficient solution
-    private boolean regexIntDoubleCheck(String s){
-        return this.pattern.matcher(s).find();
-    }
 
+    }
+    */
 }
