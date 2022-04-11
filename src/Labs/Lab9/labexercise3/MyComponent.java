@@ -1,16 +1,20 @@
 package Labs.Lab9.labexercise3;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 public class MyComponent extends JComponent implements MouseListener, KeyListener {
 
     public MyComponent(){
         this.addKeyListener(this);
         this.addMouseListener(this);
+        KeyAdapter ka = new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                System.out.println(e.getKeyChar());
+            }
+        };
     }
 
 
