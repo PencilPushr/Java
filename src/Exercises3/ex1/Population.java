@@ -1,4 +1,4 @@
-package Exercises3;
+package Exercises3.ex1;
 
 public class Population {
 
@@ -8,7 +8,7 @@ public class Population {
         this.size = inputSize;
     }
 
-    public double update(double inputSize){
+    public double[] update(double inputSize){
         return this.size += inputSize;
     }
 
