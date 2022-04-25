@@ -8,7 +8,7 @@ public class Population {
         this.size = inputSize;
     }
 
-    public double[] update(double inputSize){
+    public double update(double inputSize){
         return this.size += inputSize;
     }
 
