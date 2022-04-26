@@ -61,8 +61,11 @@ public class MainCity {
                     city.printCountry(p.nextLine());
                     break;
                 case "4":
-                    Double.parseDouble(p.nextLine())
-                    city.printClosest10();
+                    System.out.println("Enter the first integer:");
+                    double input1 = Double.parseDouble(p.nextLine());
+                    System.out.println("Enter the second integer");
+                    double input2 = Double.parseDouble(p.nextLine());
+                    city.printClosest10(input1, input2);
                     break;
                 case "quit":
                     stop = true;

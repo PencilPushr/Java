@@ -55,7 +55,10 @@ public class CityData {
     }
 
     public void printSmallest10(){
-        //Print smallest 10 cities
+        metropolis[] m = new metropolis[10];
+        for (var entry: atlas.entrySet()) {
+            Collections.min(atlas.)
+        }
         System.out.println();
     }
 

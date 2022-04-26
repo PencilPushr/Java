@@ -8,8 +8,8 @@ public class Population {
         this.size = inputSize;
     }
 
-    public double update(double inputSize){
-        return this.size += inputSize;
+    public void update(double inputSize){
+        this.size += inputSize;
     }
 
     public double getSize() {
