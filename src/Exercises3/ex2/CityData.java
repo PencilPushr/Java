@@ -1,5 +1,3 @@
-package Exercises3.ex2;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.Math;
@@ -50,15 +48,12 @@ public class CityData {
     }
 
     public void printLargest10(){
-        //Print largest 10 cities (ASCII name, latitude, longitude, country and population)
+        //Print largest 10 cities (Name + lat + long + country + population)
         System.out.println();
     }
 
     public void printSmallest10(){
-        metropolis[] m = new metropolis[10];
-        for (var entry: atlas.entrySet()) {
-            Collections.min(atlas.)
-        }
+        //Print smallest 10 cities
         System.out.println();
     }
 
@@ -85,26 +80,8 @@ public class CityData {
         //if it is closer (smaller than) to the coordinates replace the value on the metropolis
     }
 
-    //Takes in geocoordinates, returns a distance in kilometres as the crow flies.
-    public double HaversineDistance(double lat1, double lon1, double lat2, double lon2){
-
-        // distance between latitudes and longitudes
-        double dLat = (lat2 - lat1) *
-                CityData.pi / 180.0;
-        double dLon = (lon2 - lon1) *
-                CityData.pi / 180.0;
-
-        // convert to radians
-        lat1 = (lat1) * CityData.pi / 180.0;
-        lat2 = (lat2) * CityData.pi / 180.0;
-
-        // apply formulae
-        double a =  Math.pow(Math.sin(dLat / 2), 2) +
-                    Math.pow(Math.sin(dLon / 2), 2) *
-                            Math.cos(lat1) * Math.cos(lat2);
-        double rad = 6371; //radius of the earth
-        double c = 2 * Math.asin(Math.sqrt(a));
-        return rad * c;
+    public double HaversineDistance(){
+        return 0.0;
     }
 
 
