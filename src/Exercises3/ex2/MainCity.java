@@ -1,11 +1,10 @@
 package Exercises3.ex2;
 
+import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
-public class MainCity {
-
+class Main {
     final static String[] menuItems = new String[]{"1", "2", "3", "4", "quit"};
     final static String menuOpts = " ----------------- MENU ----------------- \n 1 to print 10 largest cities \n 2 to print 10 smallest cities \n 3 to enter a country and print cities from this country \n 4 to enter a latitude and longitude and print 10 closest cities \n quit to quit \n  input: \n";
 
@@ -16,14 +15,15 @@ public class MainCity {
         String fileInput = null;
         java.util.Scanner p = new java.util.Scanner(System.in);
         String menuInput = "";
-        java.util.Scanner s = null;
+
+        CityData city = null;
 
         //Now we try to get a valid file
         while (!stop) {
             try {
                 System.out.println("Please input the file name: ");
                 fileInput = p.nextLine();
-                s = new java.util.Scanner(new File(fileInput));
+                city = new CityData(fileInput);
                 stop = true;
             } catch (FileNotFoundException e){
                 System.out.println("File does not exist, please try again.");
@@ -32,18 +32,6 @@ public class MainCity {
             }
         }
         stop = false;
-
-        //now get the city from the scanner
-        CityData city = null;
-
-        try {
-            city = new CityData(fileInput);
-        } catch (FileNotFoundException e){
-            System.out.println("Something's gone terribly wrong; File not found");
-            //this should never happen, as according to the code block above, we have found a valid file.
-        }
-
-        s.close();
 
         //Now we execute user commands, until the user is finished.
         while(!stop){
@@ -61,11 +49,8 @@ public class MainCity {
                     city.printCountry(p.nextLine());
                     break;
                 case "4":
-                    System.out.println("Enter the first integer:");
-                    double input1 = Double.parseDouble(p.nextLine());
-                    System.out.println("Enter the second integer");
-                    double input2 = Double.parseDouble(p.nextLine());
-                    city.printClosest10(input1, input2);
+                    Double.parseDouble(p.nextLine());
+                    city.printClosest10();
                     break;
                 case "quit":
                     stop = true;
