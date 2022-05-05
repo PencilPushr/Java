@@ -1,4 +1,4 @@
-package Exercises3.ex2;
+package Exercises3.ex3;
 
 import Exercises3.ex3.PopulationDisplay;
 
