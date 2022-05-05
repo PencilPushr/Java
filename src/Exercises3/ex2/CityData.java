@@ -74,21 +74,22 @@ public class CityData {
     public void printSmallest10(){
         //Print smallest 10 cities
 
-        metropolis[] tenSmallestSoFar = new metropolis[10];
+        metropolis[] tenLargestSoFar = new metropolis[10];
 
         for (var entry: atlas.values()){
-            tenSmallestSoFar = this.enterCity(true,(metropolis) entry,tenSmallestSoFar);
+            tenLargestSoFar = this.enterCity(true,(metropolis) entry,tenLargestSoFar);
         }
 
         //ASCII name, latitude, longitude, country and population
         System.out.println("TAH-DAH!!!!");
-        for (var city: tenSmallestSoFar){
+        for (var city: tenLargestSoFar){
             String temp = city.namium+", Country: "+city.country+", Co-ordinates: "+city.latitude+","+city.longitude +", Population: "+city.population;
             System.out.println("----Name: "+temp);
         }
     }
 
     //Iterates through city array to check population for smallest and largest based on boolean
+    //true will check for largest, false will check for smallest
     private metropolis[] enterCity(boolean small,metropolis newCity,metropolis[] pool){
         metropolis temp = null;
         for (int i=0;i<pool.length;i++){
@@ -122,16 +123,26 @@ public class CityData {
         Set<String> keys = new HashSet<>();
         for (var entry : atlas.entrySet()){
             if (Objects.equals(str, entry.getValue())){
-                System.out.println(entry.getKey().toString() + "=" +             entry.getValue());
+                System.out.println(entry.getKey().toString() + "=" + entry.getValue());
             }
         }
+
+        ArrayList<String> temp = new ArrayList<>();
+
+        for (var entry : atlas.values()){
+            if (entry.country.equals(str)){
+                temp.add(entry.namium);
+            }
+        }
+
+        //Collections.
 
     }
 
     // This function is like enterCity, but for distance
     private metropolis[] navigateCity(double startLat, double startLong, metropolis newCity,metropolis[] pool){
         metropolis temp = null;
-        for (int i=0;i<pool.length;i++){
+        for (int i=0; i < pool.length; i++){
             if (pool[i] != null){
                 double distanceOne = HaversineDistance(newCity.latitude, newCity.longitude, startLat, startLong);
                 double distanceTwo = HaversineDistance(pool[i].latitude, pool[i].longitude, startLat, startLong);

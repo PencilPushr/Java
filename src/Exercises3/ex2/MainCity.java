@@ -4,7 +4,8 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-class Main {
+public class MainCity {
+
     final static String[] menuItems = new String[]{"1", "2", "3", "4", "quit"};
     final static String menuOpts = " ----------------- MENU ----------------- \n 1 to print 10 largest cities \n 2 to print 10 smallest cities \n 3 to enter a country and print cities from this country \n 4 to enter a latitude and longitude and print 10 closest cities \n quit to quit \n  input: \n";
 
@@ -49,8 +50,11 @@ class Main {
                     city.printCountry(p.nextLine());
                     break;
                 case "4":
-                    Double.parseDouble(p.nextLine());
-                    city.printClosest10();
+                    System.out.println("Enter the first integer:");
+                    double input1 = Double.parseDouble(p.nextLine());
+                    System.out.println("Enter the second integer");
+                    double input2 = Double.parseDouble(p.nextLine());
+                    city.printClosest10(input1, input2);
                     break;
                 case "quit":
                     stop = true;
