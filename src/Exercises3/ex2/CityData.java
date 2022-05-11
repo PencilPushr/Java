@@ -46,7 +46,7 @@ public class CityData {
                 //from the start and end of each line.
                 String[] line = thing.replaceAll("^\"|\"$", "").split("\",\"");
                 metropolis temp = new metropolis(Integer.parseInt(line[10]), line[1],Double.parseDouble(line[2]),
-                        Double.parseDouble(line[3]),line[4],Integer.parseInt(line[9]));
+                                                    Double.parseDouble(line[3]),line[4],Integer.parseInt(line[9]));
                 this.atlas.put(Integer.valueOf(line[10]),temp);
             }
             first = false;
@@ -119,10 +119,21 @@ public class CityData {
     //Recieves a String country name, and prints all cities from given country
     public void printCountry(String str){
         //Recieves a String country name, and prints all cities from given country
+
+        //set to hold all the values
         Set<String> keys = new HashSet<>();
+        //Iterates through atlas, checking if the name is equal to the str
         for (var entry : atlas.entrySet()){
-            if (Objects.equals(str, entry.getValue())){
+            if (Objects.equals(str, entry.getValue())){ //if name = string
                 System.out.println(entry.getKey().toString() + "=" +             entry.getValue());
+            }
+        }
+
+        //ArrayList<String> printCities = new ArrayList<String>();
+
+        for (var entry : atlas.values()){
+            if (entry.country.equals(str)){
+                System.out.println(entry.namium);
             }
         }
 
