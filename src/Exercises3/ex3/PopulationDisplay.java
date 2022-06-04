@@ -19,6 +19,9 @@ public class PopulationDisplay extends JComponent{
                 e.printStackTrace();
             }
         }
+
+
+
     }
 
     @Override
@@ -36,13 +39,13 @@ public class PopulationDisplay extends JComponent{
                 //perhaps use the getPopIntensity method to make more readable
                 for (int i = 0; i < this.pdata[0].getPopData().length; i++) {
                     for (int j = 0; j < this.pdata[0].getPopData()[0].length; j++) {
-                        double[] temp1 = this.pdata[i].IndexedColour(i, j);
+                        double[] temp1 = this.pdata[i].getIndexedColour(i, j);
                         g.setColor(new Color((float) temp1[0], (float) temp1[1], (float) temp1[2]));
                         g.fillRect(i, j, this.getWidth(), this.getHeight());
                     }
                 }
 
-                if (counter > pdata.length){
+                if (counter < pdata.length){
                     counter = 0;
                 }
 
@@ -50,6 +53,8 @@ public class PopulationDisplay extends JComponent{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+
+            counter++;
         }
 
 

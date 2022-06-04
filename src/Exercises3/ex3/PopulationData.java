@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class PopulationData {
 
     private double[][] popData;
+    private double[][][] paintBucket;
     private double rnTotal;
 
     public PopulationData(String filename) throws FileNotFoundException {
@@ -14,6 +15,7 @@ public class PopulationData {
 
         //should be 4320 columns however we skip the first 5 rows
         popData = new double[4320][8640];
+        paintBucket = new double[4320][8640][3];
 
         //utility variables
         int i = 0;
@@ -41,6 +43,13 @@ public class PopulationData {
             i++;
         }
 
+
+        for (int j = 0; j < paintBucket.length; j++) {
+            for (int k = 0; k < paintBucket[0].length; k++) {
+                this.paintBucket[j][k] = IndexedColour(j, k);
+            }
+        }
+
         //alternatively using something like Collections class, could skip the first 5 lines and simply bulk add
         //the entirety of the CSV to a 2d double array
 
@@ -56,7 +65,7 @@ public class PopulationData {
     }
 
     //create function for running total that indexes the value for the colour range.
-    public double[] IndexedColour(int row, int column){
+    private double[] IndexedColour(int row, int column){
                         //r,    g,  b
         double[] temp = {0.0, 0.0, 0.0};
         double value = this.popData[row][column];
@@ -80,5 +89,9 @@ public class PopulationData {
 
     public double getRnTotal() {
         return rnTotal;
+    }
+
+    public double[] getIndexedColour(int i, int j) {
+        return this.paintBucket[i][j];
     }
 }
