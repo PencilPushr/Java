@@ -76,7 +76,12 @@ public class projectCSVreader {
             String thing = s.nextLine();
             if (first == false) {
                 String[] line = thing.split(",");
-                studentDetails temp = new studentDetails((line[1]), )
+                studentDetails temp = new studentDetails(line[1], Integer.parseInt(line[2]), Integer.parseInt(line[3]),
+                        Integer.parseInt(line[4]), Integer.parseInt(line[5]), Integer.parseInt(line[6]),
+                        Integer.parseInt(line[7]), Integer.parseInt(line[8]), Integer.parseInt(line[9]),
+                        Integer.parseInt(line[10]), Integer.parseInt(line[11]), Integer.parseInt(line[12]),
+                        Integer.parseInt(line[13]), Integer.parseInt(line[14]), Integer.parseInt(line[15]),
+                        Integer.parseInt(line[16]));
             }
             first=false;
 
