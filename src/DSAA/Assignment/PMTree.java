@@ -1,5 +1,7 @@
 package DSAA.Assignment;
 
+import java.util.ArrayList;
+
 public class PMTree {
     private class Node {
         Node parent;
@@ -27,10 +29,45 @@ public class PMTree {
 
     private Node root = null;
 
+    //recursive algorithm for finding subtree size at a given node
+    int getSubtreeSize(int cur, ArrayList<Integer> children, ArrayList<Integer> subSize) {
+        subSize.set(cur, 1);
+        int size = children.size();
+        for (int i = 0; i < size; i++) {
+            subSize.set(cur, getSubtreeSize(i, children, subSize));
+            if (i == (size - 1)) {
+                return subSize.get(cur);
+            }
+        }
+        return subSize.get(cur);
+    }
+
+    public String nthShortest (int n){
+        if (n < 1){
+            System.out.println("Cannot have a prime minister that served 0 or less days");
+            return "";
+        }
+
+        Node curSmallest = this.root;
+
+        if (n > this.root.left.days){
+
+        } else { //must be this case (n < this.root.right.days)
+
+        }
+
+        while (curSmallest != null){
+            if(curSmallest.days == n){
+                return curSmallest.PrimeMinisterName;
+            }else if ()
+        }
+    }
 
     public String getName (int days) {
         Node temp = this.getNode (days,false);
-        if (temp == false){return "###NO SUCH PERSON###";}
+        if (temp == null){
+            return "###NO SUCH PERSON###";
+        }
         return temp.PrimeMinisterName;
     }
 
