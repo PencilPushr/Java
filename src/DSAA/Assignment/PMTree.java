@@ -39,29 +39,31 @@ public class PMTree {
                 return subSize.get(cur);
             }
         }
-        return subSize.get(cur);
+        return size;
     }
 
-    public String nthShortest (int n){
-        if (n < 1){
+    public String nthShortest (int n) {
+        if (n < 1 || this.root == null) {
             System.out.println("Cannot have a prime minister that served 0 or less days");
             return "";
         }
 
         Node curSmallest = this.root;
 
-        if (n > this.root.left.days){
-
-        } else { //must be this case (n < this.root.right.days)
-
-        }
-
-        while (curSmallest != null){
-            if(curSmallest.days == n){
+        while (curSmallest != null) {
+            if (n == curSmallest.days){
                 return curSmallest.PrimeMinisterName;
-            }else if ()
+            }
+            else if (n < curSmallest.days) {
+                curSmallest = curSmallest.left;
+            } else { //must be this case (n < this.root.right.days)
+                curSmallest = curSmallest.right;
+            }
         }
+        return ""; //something bad happened
     }
+
+
 
     public String getName (int days) {
         Node temp = this.getNode (days,false);
@@ -122,7 +124,9 @@ public class PMTree {
      *  no left child because a left child would contain a smaller value).
      */
     public void delete (int days) {
-        if (this.getNode (days,false) == null){throw new NullPointerException("Cannot delete Nonexistant Node");}
+        if (this.getNode (days,false) == null){
+            throw new NullPointerException("Cannot delete Nonexistant Node");
+        }
         Node node = this.getNode (days,true);
         if (node.numChildren() < 2) {
             simpleDelete (node);
