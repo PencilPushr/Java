@@ -1,5 +1,4 @@
 package DSAA.Assignment;
-
 import java.util.ArrayList;
 
 public class PMTree {
@@ -25,6 +24,14 @@ public class PMTree {
             return (left == null ? 0 : 1) + (right == null ? 0 : 1);
         }
 
+        //how many nodes are smaller than this node
+        // essentially go down the left tree nodes till null.
+        int howManySmaller() {
+            if (this.left == null){return 0;}
+            if (this.right == null){return this.subTreeNodes;}
+            return 1 + this.left.howManySmaller();
+        }
+
     }
 
     private Node root = null;
@@ -42,28 +49,50 @@ public class PMTree {
         return size;
     }
 
+
+
     public String nthShortest (int n) {
-        if (n < 1 || this.root == null) {
-            System.out.println("Cannot have a prime minister that served 0 or less days");
+        if (n < 1) {
+            System.out.println("Cannot have shorter than the shortest.");
             return "";
         }
-
-        Node curSmallest = this.root;
-
-        while (curSmallest != null) {
-            if (n == curSmallest.days){
-                return curSmallest.PrimeMinisterName;
-            }
-            else if (n < curSmallest.days) {
-                curSmallest = curSmallest.left;
-            } else { //must be this case (n < this.root.right.days)
-                curSmallest = curSmallest.right;
+        if (this.root == null){
+            System.out.println("Cannot search an empty list.");
+            return "";
+        }
+        if (n > this.root.subTreeNodes+1){
+            System.out.println("There aren't that many items.");
+            return "";
+        }
+        boolean found = false;
+        Node current = this.root;
+        while (!found){
+            int temp = current.howManySmaller() + 1;
+            System.out.println(current.PrimeMinisterName);
+            System.out.println("Temp: "+temp);
+            if (temp < n){
+                //no longer looking for nth smallest
+                //looking for n-(howmuchstuff I've skipped) -> alter create a copy of n and perform the operation
+                //n - temp would give the value of stuff we have skipped
+                //the thing we are looking for
+                n -= temp;
+                current = current.right;
+            } else if (temp > n){
+                current = current.left;
+            }else{
+                found = true;
             }
         }
-        return ""; //something bad happened
+        return current.PrimeMinisterName;
     }
 
-
+    public String[] allNShortest (int n){
+        String[] temp = new String[n];
+        for(int i = n; i > 0; i--){
+            temp[i] = (nthShortest(i));
+        }
+        return temp;
+    }
 
     public String getName (int days) {
         Node temp = this.getNode (days,false);
@@ -96,15 +125,20 @@ public class PMTree {
 
         while (true) {
             cur.subTreeNodes++;
-            if (days == cur.days)
+            if (days == cur.days){
+                //add modification so if a primeminister serves the exact same days -> replace the name
+                //other case, cur.subTreeNode--;
                 return;
+            }
             else if (days < cur.days) {
+                System.out.println("Adding left.");
                 if (cur.left == null) {
                     cur.left = new Node (cur, days, name);
                     return;
                 } else
                     cur = cur.left;
             } else {
+                System.out.println("Adding right.");
                 if (cur.right == null) {
                     cur.right = new Node (cur, days, name);
                     return;
@@ -122,7 +156,11 @@ public class PMTree {
      *  subtree and delete the node that originally contained that element.
      *  Note that, by construction, that node has at most one child (it has
      *  no left child because a left child would contain a smaller value).
+     *
+     *  Will only delete the first instance the function comes across. It will not seek any          *  further as this was not specified in the requirments.
      */
+
+
     public void delete (int days) {
         if (this.getNode (days,false) == null){
             throw new NullPointerException("Cannot delete Nonexistant Node");
