@@ -67,6 +67,7 @@ public class PMTree {
         boolean found = false;
         Node current = this.root;
         while (!found){
+
             int temp = current.howManySmaller() + 1;
             System.out.println(current.PrimeMinisterName);
             System.out.println("Temp: "+temp);

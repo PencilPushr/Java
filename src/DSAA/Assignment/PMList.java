@@ -3,6 +3,7 @@ package DSAA.Assignment;
 import java.util.*;
 
 public class PMList {
+
     public static class Entry {
         public final int days;
         public final String name;
