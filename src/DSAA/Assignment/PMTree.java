@@ -60,20 +60,19 @@ public class PMTree {
         String nthsmallest = null;
         Node curr = root; // to store the current node
 
+        //while we are not at the end of the right tree or current does not equal null
         while (curr != null) {
             if (curr.left == null) {
                 count++;
 
                 // if count is equal to N then we found the
                 // nth smallest, so store it in nthsmallest
-                if (count == n)
-                    nthsmallest = curr.PrimeMinisterName;
+                if (count == n) nthsmallest = curr.PrimeMinisterName;
 
                 // go to current's right child
                 curr = curr.right;
             } else {
-                // we create links to Inorder Successor and
-                // count using these links
+                // we create links to Inorder Successor and count using these links
                 Node pre = curr.left;
                 while (pre.right != null && pre.right != curr)
                     pre = pre.right;
@@ -83,18 +82,16 @@ public class PMTree {
                     //link made to Inorder Successor
                     pre.right = curr;
                     curr = curr.left;
-                }
-
-                // While breaking the links in so made temporary
-                // threaded tree we will check for the N smallest condition
-                else {
+                }else {
                     // Revert the changes made in if part (break link from the Inorder Successor)
                     pre.right = null;
 
                     count++;
 
-                    // If count is equal to N then we found
-                    // the nth smallest and so store it in nthSmallest
+                    // we have found the smallest or something smaller than the current
+                    // therefore set it to the current smallest primeminister
+                    // we are doing this as sometimes when we break the links as we are reverting the tree back to normal
+                    // we may find that we have encountered anther smallest
                     if (count == n)
                         nthsmallest = curr.PrimeMinisterName;
 
