@@ -12,39 +12,35 @@ public class projectCSVreaderV2 {
 
     public class student{
 
-        //public int id;
-        public int course;
-        //TODO: make modules and results a hashmap; each module, has a result and therefore is a pair.
-        public String[] modules;
-        public int[] moduleResults;
+        private int course;
+        private HashMap<String, Integer> moduleAndResults;
+        //TODO: make it so person will only have module if they have a result in the CSV
+        // consider removing the module if the result is null.
+        // TEMP FIX: set int to -1 if they don't have the module
+
 
     }
 
-    private HashMap<Integer, projectCSVreaderV2.student> studentDet;
+    private HashMap<Integer, projectCSVreaderV2.student> studentDetails;
 
     projectCSVreaderV2() throws FileNotFoundException {
 
         String fileName = "data.csv";
         Scanner s = new Scanner(new FileReader(fileName));
-// if the first line is the header
 
         this.pattern = Pattern.compile("[(a-zA-Z0-9)+\\s+]+(,)?");
-        //some of the values in the CSV file are null -> ",,,44,32,,27"
+        //some values in the CSV file are null -> ",,,44,32,,27"
         //if the pattern does not apply, we skip the value and apply null when inputting it the Hashmap
-        //or place the string saying that they do not attend this module.
+        //or remove that string from the persons hashmap.
 
         String[] header = s.nextLine().split(",");
-        boolean first = true;
         boolean matches = true;
 
         while(s.hasNext()) {
-            String thing = s.nextLine();
-            if (first == false) {
-                 //String[] line = thing.spl
-                String[] line = thing.split(this.pattern.pattern());
-            }
-            first = false;
+            String[] line = s.nextLine().split(this.pattern.pattern());
+
         }
+
 
     }
 
