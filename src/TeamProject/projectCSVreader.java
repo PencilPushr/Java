@@ -1,7 +1,5 @@
 package TeamProject;
 
-import Exercises3.ex2.CityData;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
