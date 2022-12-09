@@ -1,13 +1,11 @@
 package DSAA.Assignment2;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class MST {
 
     public static void main(String[] args) {
-
+        getTotalEdgeWeight(GraphOfEssex.getGraph());
 
    }
 
@@ -30,13 +28,17 @@ public class MST {
 
         double[][] coord = new double[n][2];
 
+        coord[0][0] = Math.random();
+        coord[0][1] = Math.random();
+
         double weight;
 
         for (int i = 0; i < n; i++){
-            coord[i][0] = Math.random();
-            coord[i][1] = Math.random();
+            coord[i+1][0] = Math.random();
+            coord[i+1][1] = Math.random();
             //skip the case where we have (i == j)
             for (int j = i + 1; j < n; j++){
+
                 weight = Math.sqrt(
                         Math.pow((coord[i][0] - coord[j][0]), 2)
                                 +
@@ -49,13 +51,38 @@ public class MST {
     }
 
     static Graph getBaseTree(Graph g){
-        //use breadth-first search
+        //generating template for base tree
+        MatrixGraph mg = new MatrixGraph(g.numVertices(), Graph.UNDIRECTED_GRAPH);
 
+        //breadth-first search
 
+        //Utility vars for BFS
+        ArrayDeque<Integer> queue = new ArrayDeque();
+        HashMap<Double, Boolean> hm = new HashMap<>();
+        int cur;
 
+        queue.add(0);
+        hm.put(0.0, true);
+        while (!queue.isEmpty()){
+            cur = queue.remove();
+            for (var i : g.neighbours(cur)) {
+                if (!hm.get( (double) i) ){
+                    hm.putIfAbsent( (double) i, true);
+                    queue.add(i);
+                    mg.addEdge(cur, i, g.weight(cur, i));
+                }
+            }
+        }
+        return mg;
     }
 
     static Edge LongestEdgeOnPath(Graph g, int source, int destination){
+
+        HashMap<> hm = new HashMap();
+
+        for (int i = 0; i < g.numVertices(); i++) {
+            g.nei
+        }
 
     }
 
