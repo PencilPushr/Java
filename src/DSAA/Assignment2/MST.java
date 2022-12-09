@@ -1,7 +1,8 @@
 package DSAA.Assignment2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 public class MST {
 
@@ -27,22 +28,30 @@ public class MST {
 
         Graph g = new MatrixGraph(n, Graph.UNDIRECTED_GRAPH);
 
-        Random r = new Random();
-        double rand = 0;
+        double[][] coord = new double[n][2];
 
-        for (int i = 0; i < g.numVertices(); i++) {
-            for (int j = 0; j < g.numVertices(); j++) {
-                rand =
-                g.addEdge(i, j, );
+        double weight;
+
+        for (int i = 0; i < n; i++){
+            coord[i][0] = Math.random();
+            coord[i][1] = Math.random();
+            //skip the case where we have (i == j)
+            for (int j = i + 1; j < n; j++){
+                weight = Math.sqrt(
+                        Math.pow((coord[i][0] - coord[j][0]), 2)
+                                +
+                                Math.pow((coord[i][1] - coord[j][1]), 2)
+                );
+                g.addEdge(i, j, weight);
             }
         }
-
-
-
-        return MatrixGraph a;
+        return g;
     }
 
     static Graph getBaseTree(Graph g){
+        //use breadth-first search
+
+
 
     }
 
