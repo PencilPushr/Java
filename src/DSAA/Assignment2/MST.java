@@ -11,6 +11,13 @@ public class MST {
                 + getTotalEdgeWeight(GraphOfEssex.getGraph()));
 
         //      ----    6B  ----
+        /*
+         * It gives the answer 172, I have worked on the MST for a whole 2/3 days
+         * I do not know why it's always 172, I have changed it so many times I give up.
+         * To Dr. Richerby, I know this is incorrect, but I don't know why it is incorrect.
+         *
+         */
+
         System.out.println("Total mst edge weight of GoE = "
                 + getTotalEdgeWeight(getMST(GraphOfEssex.getGraph()))
                 );
@@ -58,6 +65,7 @@ public class MST {
         return totalSoFar;
     }
 
+    //generates an undirected graph with n number of vertices.
     static Graph getRandomGraph (int n){
 
         Graph g = new MatrixGraph(n, Graph.UNDIRECTED_GRAPH);
@@ -93,6 +101,7 @@ public class MST {
         return g;
     }
 
+
     static Graph getBaseTree(Graph g){
         //generating template for base tree
         MatrixGraph mg = new MatrixGraph(g.numVertices(), Graph.UNDIRECTED_GRAPH);
@@ -104,7 +113,7 @@ public class MST {
         //our iterator
         ArrayDeque<Integer> queue = new ArrayDeque();
         HashSet<Integer> visited = new HashSet<>();
-        //current v we are on
+        //current vertex we are on
         int cur;
 
         //BFS
@@ -153,8 +162,9 @@ public class MST {
                     q.add(i);
                     if (longestEdgeSoFar < g.weight(cur, i))
                         longestEdgeSoFar = g.weight(cur, i);
-                    if (i == destination)
+                    if (i == destination) {
                         return new Edge(source, destination, longestEdgeSoFar);
+                    }
                 }
             }
         }
@@ -216,7 +226,7 @@ public class MST {
                         lEdge = LongestEdgeOnPath(MSTgraph, i, j);
                         assert lEdge != null;
                         if (g.weight(i, j) < lEdge.w){
-                            MSTgraph.deleteEdge(i, j);
+                            MSTgraph.deleteEdge(lEdge.x, lEdge.y);
                             MSTgraph.addEdge(i, j, g.weight(i, j));
                         }
                     }
