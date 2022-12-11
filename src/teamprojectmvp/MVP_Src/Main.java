@@ -1,6 +1,6 @@
 package teamprojectmvp.MVP_Src;//Entry point
 
-import MVP_src.Application;
+import teamprojectmvp.MVP_Src.MVP_src.Application;
 
 class Main {
   /**

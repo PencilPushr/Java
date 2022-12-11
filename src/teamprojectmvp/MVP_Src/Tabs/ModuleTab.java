@@ -1,6 +1,7 @@
 package teamprojectmvp.MVP_Src.Tabs;
 
-import MVP_src.StudentInfo;
+
+import teamprojectmvp.MVP_Src.MVP_src.StudentInfo;
 
 import javax.swing.*;
 
