@@ -101,7 +101,10 @@ public class MST {
         return g;
     }
 
-
+    //uses breadth first search to go through g and creates spanning tree
+    //starting from 0th vertex.
+    //it does this by adding the edge to tree the first time it
+    //encounters it while going through g.
     static Graph getBaseTree(Graph g){
         //generating template for base tree
         MatrixGraph mg = new MatrixGraph(g.numVertices(), Graph.UNDIRECTED_GRAPH);
@@ -141,6 +144,7 @@ public class MST {
         return mg;
     }
 
+    // To Dr. Richerby, THIS IS WRONG BUT I DON'T KNOW WHY, EVERYTHING ELSE WORKS PERFECTLY FINE
     static Edge LongestEdgeOnPath(Graph g, int source, int destination){
 
         double longestEdgeSoFar = 0.0d;
@@ -174,40 +178,7 @@ public class MST {
 
     }
 
-
-    //Bi-directional BFS as we know the source and detination vertices. I've made this a seperate function
-    //as I do not know if I will be marked down for writing a different method than required.
-    static Edge LongestEdgeOnPathBiDir(Graph g, int source, int destination){
-
-        if (source == destination) return null;
-
-        double longestEdgeSoFar = 0.0d;
-
-        HashSet<Integer> visited1 = new HashSet<>();
-        HashSet<Integer> visited2 = new HashSet<>();
-
-        ArrayDeque<Integer> queue1 = new ArrayDeque<>();
-        ArrayDeque<Integer> queue2 = new ArrayDeque<>();
-
-        queue1.add(source);
-        visited1.add(source);
-
-        queue2.add(destination);
-        visited2.add(source);
-
-        /*
-        for (int i = 0; i < g.numVertices; i++) {
-            for (var j : hm.entrySet()) {
-                cur = hm.get(0);
-            }
-        }
-        */
-
-        return null;
-    }
-
-
-
+    //Finds minimum spanning tree of g
     static Graph getMST(Graph g){
 
         //first generate the base tree
