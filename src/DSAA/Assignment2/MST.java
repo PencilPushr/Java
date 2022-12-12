@@ -12,8 +12,8 @@ public class MST {
 
         //      ----    6B  ----
         /*
-         * It gives the answer 172, I have worked on the MST for a whole 2/3 days
-         * I do not know why it's always 172, I have changed it so many times I give up.
+         * It gives the answer 112, I have worked on the MST for a whole 2/3 days
+         * I do not know why it's always 112, I have changed it so many times I give up.
          * To Dr. Richerby, I know this is incorrect, but I don't know why it is incorrect.
          *
          */
@@ -23,25 +23,23 @@ public class MST {
                 );
 
         //      ----    6C  ----
-        double[] TotalEdgeWeight = new double[100];
-        double[] TotalMSTWeight = new double[100];
+        double averageWeight= 0.0d;
+        double averageMSTWeight = 0.0d;
 
         for (int i = 0; i < 100; i++) {
             Graph g = getRandomGraph(50);
 
-            TotalEdgeWeight[i] = getTotalEdgeWeight(g);
-            TotalMSTWeight[i] = getTotalEdgeWeight(getMST(g));
+            averageWeight += getTotalEdgeWeight(g);
+            averageMSTWeight += getTotalEdgeWeight(getMST(g));
         }
 
-        double averageWeight= 0.0d;
-        double averageMSTWeight = 0.0d;
-        for (int i = 0; i < TotalEdgeWeight.length; i++) {
-            averageWeight += TotalEdgeWeight[i];
-            averageMSTWeight += TotalMSTWeight[i];
+        averageWeight = averageWeight / 100;
+        averageMSTWeight = averageMSTWeight / 100;
 
-        }
-        averageWeight = averageWeight / TotalEdgeWeight.length;
-        averageMSTWeight = averageWeight / TotalMSTWeight.length;
+        /*
+         * This gives me the right averageMSTWeight tho lol:
+         * averageMSTWeight = averageMSTWeight / 10000;
+         */
 
         System.out.println(averageWeight);
         System.out.println(averageMSTWeight);
@@ -116,6 +114,7 @@ public class MST {
         //our iterator
         ArrayDeque<Integer> queue = new ArrayDeque();
         HashSet<Integer> visited = new HashSet<>();
+
         //current vertex we are on
         int cur;
 
@@ -153,6 +152,10 @@ public class MST {
 
         ArrayDeque<Integer> q = new ArrayDeque<>();
         HashSet<Integer> visited = new HashSet<>();
+
+        //keep track for each vertex record the vertex we came from when we first visited the node
+        HashMap<Integer, Integer> xypair = new HashMap<>();
+
         int cur;
 
         q.add(source);
@@ -164,9 +167,21 @@ public class MST {
                 if (!visited.contains(i)){
                     visited.add(i);
                     q.add(i);
-                    if (longestEdgeSoFar < g.weight(cur, i))
-                        longestEdgeSoFar = g.weight(cur, i);
+
+                    //track the node we came from and went to putting it in the hashmap
+                    xypair.put(cur, i);
+
+                    //this is dumb there has to be a better way to do this.
                     if (i == destination) {
+                        Edge e = new Edge(source, i, g.weight(source, i));
+                        for (var v : xypair.entrySet()) {
+                            longestEdgeSoFar = g.weight(v.getKey(), v.getKey()+1);
+                            if (longestEdgeSoFar > e.w){
+                                e.x = v.getKey();
+                                e.y = v.getKey()+1;
+                                e.w = longestEdgeSoFar;
+                            }
+                        }
                         return new Edge(source, destination, longestEdgeSoFar);
                     }
                 }
@@ -188,24 +203,20 @@ public class MST {
 
         for (int i = 0; i < g.numVertices(); i++) {
             for (int j = i+1; j < g.numVertices(); j++) {
-
-                //the edge exists
-                if(!Double.isNaN(g.weight(i, j))) {
-
-                    if (Double.isNaN(MSTgraph.weight(i, j))) {
-
-                        lEdge = LongestEdgeOnPath(MSTgraph, i, j);
-                        assert lEdge != null;
-                        if (g.weight(i, j) < lEdge.w){
-                            MSTgraph.deleteEdge(lEdge.x, lEdge.y);
-                            MSTgraph.addEdge(i, j, g.weight(i, j));
-                        }
+                //if the MSTgraph weight is not a number -> calculate it
+                if (Double.isNaN(MSTgraph.weight(i, j))) {
+                    //generate the longest edge
+                    lEdge = LongestEdgeOnPath(MSTgraph, i, j);
+                    assert lEdge != null;
+                    if (g.weight(i, j) < lEdge.w){
+                        MSTgraph.deleteEdge(lEdge.x, lEdge.y);
+                        MSTgraph.addEdge(i, j, g.weight(i, j));
                     }
                 }
             }
         }
 
-        //return out generated MST
+        //return generated MST
         return MSTgraph;
     }
 
