@@ -99,10 +99,7 @@ public class MST {
         return g;
     }
 
-    //uses breadth first search to go through g and creates spanning tree
-    //starting from 0th vertex.
-    //it does this by adding the edge to tree the first time it
-    //encounters it while going through g.
+    //Generates a spanning tree using BFS
     static Graph getBaseTree(Graph g){
         //generating template for base tree
         MatrixGraph mg = new MatrixGraph(g.numVertices(), Graph.UNDIRECTED_GRAPH);
@@ -111,7 +108,7 @@ public class MST {
 
         //Utility vars for BFS
 
-        //our iterator
+        //queue will act as our iterator
         ArrayDeque<Integer> queue = new ArrayDeque();
         HashSet<Integer> visited = new HashSet<>();
 
@@ -144,6 +141,9 @@ public class MST {
     }
 
     // To Dr. Richerby, THIS IS WRONG BUT I DON'T KNOW WHY, EVERYTHING ELSE WORKS PERFECTLY FINE
+
+    // iterates through a graph using BFS to get from the source node to the destination node.
+    // keeps a track of the previously encountered nodes using a hashmap.
     static Edge LongestEdgeOnPath(Graph g, int source, int destination){
 
         double longestEdgeSoFar = 0.0d;
@@ -182,7 +182,7 @@ public class MST {
                                 e.w = longestEdgeSoFar;
                             }
                         }
-                        return new Edge(source, destination, longestEdgeSoFar);
+                        return e;
                     }
                 }
             }
