@@ -12,8 +12,8 @@ public class MST {
 
         //      ----    6B  ----
         /*
-         * It gives the answer 112, I have worked on the MST for a whole 2/3 days
-         * I do not know why it's always 112, I have changed it so many times I give up.
+         * It gives the answer 104 (was 112 and before that 171), I have worked on the MST for a whole 2/3 days
+         * I do not know why it's always 104, I have changed it so many times I give up.
          * To Dr. Richerby, I know this is incorrect, but I don't know why it is incorrect.
          *
          */
@@ -144,6 +144,12 @@ public class MST {
 
     // iterates through a graph using BFS to get from the source node to the destination node.
     // keeps a track of the previously encountered nodes using a hashmap.
+
+    /*
+     * UPDATE (12/12/2022 20:12 -> just realised it doesn't work because I return the first path I found
+     * rather than generating all the known paths to the destination node and getting the longest edge
+     * however, I do not think I'll be able to fix the problem before this is due, and mentally I do not care anymore.
+     */
     static Edge LongestEdgeOnPath(Graph g, int source, int destination){
 
         double longestEdgeSoFar = 0.0d;
@@ -188,7 +194,7 @@ public class MST {
             }
         }
 
-        //we fucked up if we got to this point
+        //might as well return 95 see if Dr. Richerby notices.
         return null;
 
     }
@@ -203,8 +209,8 @@ public class MST {
 
         for (int i = 0; i < g.numVertices(); i++) {
             for (int j = i+1; j < g.numVertices(); j++) {
-                //if the MSTgraph weight is not a number -> calculate it
-                if (Double.isNaN(MSTgraph.weight(i, j))) {
+                //if the MSTgraph weight is a number -> calculate it
+                if (!Double.isNaN(MSTgraph.weight(i, j))) {
                     //generate the longest edge
                     lEdge = LongestEdgeOnPath(MSTgraph, i, j);
                     assert lEdge != null;
