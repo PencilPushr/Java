@@ -49,12 +49,14 @@ public class MST {
    }
 
    //Assumes graph is undirected
+    //we need to iterate through an adj list, and we do so only once.
+    //Big o is O(N) as we only need to go through the list once but through every member.
     static double getTotalEdgeWeight (Graph g){
         double totalSoFar = 0.0d;
         //REMEMBER: edges are bidirectional, don't count twice!
         //No vertex links to itself!
         //We can ignore the last vertex, we've already checked every link to it
-        for(int i = 0; i < (g.numVertices() -1); i++){
+        for(int i = 0; i < (g.numVertices()-1); i++){
             for (int j = i+1; j < g.numVertices(); j++){
                 if (g.isEdge(i, j))
                     totalSoFar = totalSoFar + g.weight(i, j);
@@ -64,6 +66,9 @@ public class MST {
     }
 
     //generates an undirected graph with n number of vertices.
+    //Big O is probably O(2n) as we have to iterate n number of times and the inner for loop happens twice for every
+    //x y coordinate pair. not to mention Math.Sqrt and Math.pow likely take many cpu cycles to complete. As division takes
+    //30 to 60 cycles (depending compiler options, JIT, code logic) whereas multiplication takes 6 cycles.
     static Graph getRandomGraph (int n){
 
         Graph g = new MatrixGraph(n, Graph.UNDIRECTED_GRAPH);
@@ -100,6 +105,11 @@ public class MST {
     }
 
     //Generates a spanning tree using BFS
+    //The operations of enqueuing and dequeuing take O(1) time, so the total time devoted to queue operations is O(V).
+    //and we have the added benefit that because we only scan when the vertex is dequeued the adj list is scanned at most once
+    //But for every vertex we need to scan for its neighbours. Which can be N.
+    // Where N is the number of neighbours. we repeat this process N number of times.
+    //therefore big o is O(V + N^2)
     static Graph getBaseTree(Graph g){
         //generating template for base tree
         MatrixGraph mg = new MatrixGraph(g.numVertices(), Graph.UNDIRECTED_GRAPH);
@@ -146,7 +156,7 @@ public class MST {
     // keeps a track of the previously encountered nodes using a hashmap.
 
     /*
-     * UPDATE (12/12/2022 20:12 -> just realised it doesn't work because I return the first path I found
+     * UPDATE (12/12/2022 20:12) -> just realised it doesn't work because I return the first path I found
      * rather than generating all the known paths to the destination node and getting the longest edge
      * however, I do not think I'll be able to fix the problem before this is due, and mentally I do not care anymore.
      */
@@ -161,6 +171,7 @@ public class MST {
 
         //keep track for each vertex record the vertex we came from when we first visited the node
         HashMap<Integer, Integer> xypair = new HashMap<>();
+
 
         int cur;
 
@@ -192,6 +203,7 @@ public class MST {
                     }
                 }
             }
+
         }
 
         //might as well return 95 see if Dr. Richerby notices.
@@ -200,6 +212,10 @@ public class MST {
     }
 
     //Finds minimum spanning tree of g
+    //UPDATE (12/12/2022 20:14) -> prims algorithm seems much nicer than doing what we are doing.
+    //As for big o notation of this: as far as I understand prims/kruskals algorithm is roughly O(E log E) if it being sorted
+    //but with the use of something like unions and fibonacci heaps it can be sped up.
+    //No idea about the time complexity for my own program.
     static Graph getMST(Graph g){
 
         //first generate the base tree
