@@ -1,9 +1,10 @@
 package AppProgram.Assignment1.CE203AssignmentCode2223;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 
 // ContainerPanel class for CE203 Assignment to use and modify if needed
@@ -14,9 +15,14 @@ public class ContainerPanel extends JPanel{
 
     ContainerFrame conFrame;
 
-    public ContainerPanel(ContainerFrame cf) {
+    private ArrayList<PolygonContainer> pList;
+
+    private JComboBox<String> polygonToDisplay;
+
+    public ContainerPanel(ContainerFrame cf,ArrayList<PolygonContainer> pList) {
 
         conFrame = cf;   // reference to ContainerFrame object
+        this.pList = plist
     }
 
 
@@ -29,14 +35,17 @@ public class ContainerPanel extends JPanel{
                                            // the width / height of the JPanel in which the
                                            // Polygon is going to be drawn
 
-        PolygonContainer p = new PolygonContainer();
+
 
         //INCOMPLETE
         //LINK https://duckduckgo.com/?t=ffab&q=dimension+get+the+height+and+width+of+the+jpanel&ia=web
         size.height = getHeight();
         size.width = getWidth();
 
-        p.drawPolygon(comp, size);
+        for (var i: pList) {
+            if (i == )
+            i.drawPolygon(comp, size);
+        }
 
         // Based on which stored PolygonContainer object you want to be retrieved from the
         // ArrayList and displayed, the object would be accessed and its drawPolygon() method

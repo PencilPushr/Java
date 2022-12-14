@@ -1,6 +1,7 @@
 package AppProgram.Assignment1.CE203AssignmentCode2223;
 
 import java.awt.*;
+import java.util.Arrays;
 
 import static java.lang.Math.PI;
 
@@ -103,6 +104,12 @@ public class PolygonContainer implements Comparable<PolygonContainer>{
     // outputs a string representation of the PolygonContainer object, you need to complete this to use for testing
     public String toString()
     {
-        return "";
+        return "This polgyons pId is :" + this.pId + "\n" +
+                "Colour: " + this.pId + "\n" +
+                "Sides:" + this.pId + "\n" +
+                "Side lengths: " + this.pId + "\n" +
+                "Centred at: " + this.polyCenX + " , " + this.polyCenY + "\n" +
+                "With points:" + "\n" + "x:" + Arrays.toString(this.pointsX) + "\n" +
+                                        "y:" + Arrays.toString(this.pointsY) + "\n";
     }
 }
