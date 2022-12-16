@@ -42,7 +42,7 @@ public class PolygonContainer implements Comparable<PolygonContainer>{
 
     // Used to populate the points array with the vertices corners (points) and construct a polygon with the
     // number of sides defined by pSides and the length of each side defined by pSideLength.
-    // Dimension object that is passed in as an argument is used to get the width and height of the ContainerPanel
+    // Dimension object that is passed in as an argument is used to get the width and height of the AppProgram.Assignment1.CE203AssignmentCode2223.ContainerPanel
     // and used to determine the x and y values of its centre point that will be used to position the drawn Polygon.
     private Polygon getPolygonPoints(Dimension dim) {
 

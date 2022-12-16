@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 // Author: F. Doctor
 
 class ContainerButtonHandler implements ActionListener {
-    ContainerFrame theApp;   // Reference to ContainerFrame object
+    ContainerFrame theApp;
 
     // ButtonHandler constructor
     ContainerButtonHandler(ContainerFrame app ) {
@@ -23,17 +23,9 @@ class ContainerButtonHandler implements ActionListener {
     // You might have separate event handler classes for managing text input retrieval and button
     // press events.
     public void actionPerformed(ActionEvent e) {
-        e.
-
-
         theApp.repaint();
-
     }
 
-    private void setUpAddPolyButton(ActionEvent e){
-        JButton AddPlyButton = new JButton("Add Polygon object");
-        add
-    }
 
 }
 

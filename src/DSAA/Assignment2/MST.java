@@ -5,6 +5,16 @@ import java.util.*;
 
 public class MST {
 
+    private class Pair<K, V> {
+        protected K first;
+        protected V second;
+
+        public Pair(K first, V second){
+            this.first = first;
+            this.second = second;
+        }
+    }
+
     public static void main(String[] args) {
         //      ----    6A  ----
         System.out.println("total edge weight of GoE = "
